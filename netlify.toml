@@ -1,0 +1,27 @@
+[build]
+  publish = "."
+
+# 이미지는 파일명이 고정이므로 장기 캐시 대신 1일 + 재검증
+[[headers]]
+  for = "/vzi-images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+
+# HTML은 항상 최신본을 받도록
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# 투자자 강의서 짧은 주소
+[[redirects]]
+  from = "/investor"
+  to = "/index-investor.html"
+  status = 200

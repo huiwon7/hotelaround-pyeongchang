@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# 투자자용 강의서는 검색 노출 제외
+Disallow: /index-investor.html
+Disallow: /investor
+
+Sitemap: https://pch.hotelaround.kr/sitemap.xml
