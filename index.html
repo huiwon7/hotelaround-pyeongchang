@@ -100,7 +100,8 @@
     {"@type":"Question","name":"바비큐를 하고 싶은데 어떻게 하나요?","acceptedAnswer":{"@type":"Answer","text":"호텔 루프탑 BBQ 가든에서 이용하실 수 있습니다. 운영 시즌과 이용 방법은 예약 문의 시 안내드립니다."}},
     {"@type":"Question","name":"아이와 함께 가기 좋나요?","acceptedAnswer":{"@type":"Answer","text":"여름 시즌에는 키즈 물놀이 시설을 운영하고, 아이가 있는 가족에게는 온돌형 객실이 인기가 많습니다. 걸어서 15분 거리에 블루캐니언 워터파크가 있습니다."}},
     {"@type":"Question","name":"단체·워크숍·세미나도 가능한가요?","acceptedAnswer":{"@type":"Answer","text":"가능합니다. 518객실 규모에 최대 180명 수용 연회장을 갖추고 있어 기업 워크숍, 세미나, 단체 행사를 진행할 수 있습니다."}},
-    {"@type":"Question","name":"서울에서 얼마나 걸리나요?","acceptedAnswer":{"@type":"Answer","text":"영동고속도로 이용 시 서울에서 약 1시간 30분입니다. KTX 평창역에서는 택시로 약 19분(14km) 거리입니다."}}
+    {"@type":"Question","name":"서울에서 얼마나 걸리나요?","acceptedAnswer":{"@type":"Answer","text":"영동고속도로 이용 시 서울에서 약 1시간 30분입니다. KTX 평창역에서는 택시로 약 19분(14km) 거리입니다."}},
+    {"@type":"Question","name":"골프 치러 가는데 숙소로 괜찮을까요?","acceptedAnswer":{"@type":"Answer","text":"호텔과 같은 태기로에 휘닉스 컨트리클럽(18홀 파72)이 있어 차로 5분 거리입니다. 다만 리조트 회원제 골프장이라 회원이 아닌 경우 회원 동반 또는 추천이 필요하며, 티타임 예약은 골프장에서 직접 하셔야 합니다. 호텔은 라운딩 일정에 맞춘 객실 배정, 조식 시간 조정, 늦은 체크아웃을 지원합니다."}}
   ]
 }
 </script>
@@ -231,7 +232,8 @@ section{padding-block:clamp(60px,9vw,120px)}
 .season-acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
 .season-acts span{font-size:.83rem;font-weight:600;color:var(--g9);background:var(--sand2);border-radius:999px;padding:7px 14px}
 .season-spots{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:10px;margin-top:22px}
-.season-spot{border-radius:12px;overflow:hidden;position:relative;aspect-ratio:1/1}
+.season-spot{display:block;border-radius:12px;overflow:hidden;position:relative;aspect-ratio:1/1}
+a.season-spot:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .season-spot img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
 .season-spot:hover img{transform:scale(1.08)}
 .season-spot .cap{position:absolute;inset:auto 0 0 0;padding:9px 10px;background:linear-gradient(transparent,rgba(37,48,31,.9));color:#fff;font-size:.72rem;font-weight:700}
@@ -423,6 +425,43 @@ body.lb-lock{overflow:hidden}
 .pkg-cta{margin-top:32px;display:flex;flex-wrap:wrap;align-items:center;gap:14px}
 .pkg-cta p{font-size:.9rem;color:var(--muted);max-width:420px;line-height:1.6}
 
+/* ---- 골프 ---- */
+.golf-sec{background:var(--sand)}
+.golf-hero{margin-top:38px;position:relative;border-radius:20px;overflow:hidden;box-shadow:var(--sh);aspect-ratio:16/9}
+@media(max-width:640px){.golf-hero{aspect-ratio:4/3}}
+.golf-hero img{width:100%;height:100%;object-fit:cover}
+.golf-hero .ov{position:absolute;inset:auto 0 0 0;padding:clamp(20px,4vw,38px);color:#fff;
+  background:linear-gradient(transparent,rgba(13,23,18,.35) 40%,rgba(13,23,18,.92))}
+.golf-hero .ov b{font-family:var(--serif);display:block;font-size:clamp(1.5rem,3.4vw,2.4rem);font-weight:600;line-height:1.2}
+.golf-hero .ov b em{font-style:normal;color:var(--gold-sf)}
+.golf-hero .ov p{margin-top:8px;font-size:.94rem;color:#e2ddcd;max-width:560px;word-break:keep-all}
+
+.golf-specs{margin-top:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.golf-specs{grid-template-columns:1fr 1fr}}
+.golf-specs div{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:18px;text-align:center}
+.golf-specs b{display:block;font-family:var(--serif);font-size:1.6rem;color:var(--g9);font-weight:700;line-height:1.1}
+.golf-specs span{display:block;margin-top:6px;font-size:.78rem;color:var(--muted);font-weight:600;letter-spacing:.04em}
+
+.golf-courses{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:760px){.golf-courses{grid-template-columns:1fr}}
+.golf-course{background:var(--white);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  transition:transform .35s var(--ease),box-shadow .35s}
+.golf-course:hover{transform:translateY(-5px);box-shadow:var(--sh)}
+.golf-course .ph{aspect-ratio:4/3;overflow:hidden}
+.golf-course .ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.golf-course:hover .ph img{transform:scale(1.05)}
+.golf-course .bd{padding:20px 22px 22px}
+.golf-course .hole{font-size:.74rem;font-weight:700;letter-spacing:.12em;color:var(--wood)}
+.golf-course h3{font-size:1.14rem;color:var(--g9);margin:6px 0 8px}
+.golf-course p{font-size:.88rem;color:var(--muted);line-height:1.65}
+
+.golf-note{margin-top:20px;background:var(--white);border:1px solid var(--line);border-left:4px solid var(--wood);
+  border-radius:12px;padding:20px 22px}
+.golf-note b{color:var(--g9);font-size:.95rem}
+.golf-note p{margin-top:8px;color:var(--muted);font-size:.88rem;line-height:1.7}
+.golf-cta{margin-top:26px;display:flex;flex-wrap:wrap;align-items:center;gap:14px}
+.golf-cta p{font-size:.9rem;color:var(--muted);max-width:400px;line-height:1.6}
+
 /* ---- 오시는 길 ---- */
 .loc-sec{background:var(--g9);color:#fff}
 .loc-sec .sect-title{color:#fff}
@@ -566,6 +605,7 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
       <a href="#eat">맛집</a>
       <a href="#rooms">객실</a>
       <a href="#package">패키지</a>
+      <a href="#golf">골프</a>
       <a href="#facilities">시설</a>
       <a href="#location">오시는 길</a>
       <a href="#faq">FAQ</a>
@@ -672,8 +712,9 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
         <span class="season-badge"><span class="dot"></span>AUTUMN · 가을</span>
         <h3 class="season-h">온 산이 물드는 <em>숲의 계절</em></h3>
         <p class="season-desc">전나무숲 사이를 걷고, 하얀 메밀꽃밭을 지나, 억새가 은빛으로 일렁이는 언덕에서 사진을 남기는 평창의 가을 — Autumn Forest.</p>
-        <div class="season-acts"><span>단풍 트레킹</span><span>전나무숲 산책</span><span>봉평 메밀꽃</span><span>억새 명소</span><span>로컬 미식</span><span>와인</span></div>
+        <div class="season-acts"><span>가을 골프</span><span>단풍 트레킹</span><span>전나무숲 산책</span><span>봉평 메밀꽃</span><span>억새 명소</span><span>로컬 미식</span><span>와인</span></div>
         <div class="season-spots">
+          <a class="season-spot" href="#golf"><img src="vzi-images/golf/course-mountain.jpg" alt="가을 라운딩 — 휘닉스 컨트리클럽" width="803" height="602" loading="lazy" decoding="async"><span class="cap">가을 라운딩</span></a>
           <div class="season-spot"><img src="vzi-images/attractions/bongpyeong-buckwheat.jpg" alt="봉평 메밀밭" width="1600" height="1200" loading="lazy" decoding="async"><span class="cap">봉평 메밀밭</span></div>
           <div class="season-spot"><img src="vzi-images/attractions/600majigi.jpg" alt="육백마지기" width="940" height="543" loading="lazy" decoding="async"><span class="cap">육백마지기</span></div>
           <div class="season-spot"><img src="vzi-images/attractions/daegwallyeong-sheep.jpg" alt="대관령 양떼목장" width="1600" height="1200" loading="lazy" decoding="async"><span class="cap">대관령 양떼목장</span></div>
@@ -1018,6 +1059,63 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
   </div>
 </section>
 
+<!-- GOLF -->
+<section class="golf-sec" id="golf">
+  <div class="wrap">
+    <p class="eyebrow reveal">Golf</p>
+    <h2 class="sect-title reveal">티오프까지, 차로 5분</h2>
+    <p class="sect-lead reveal">호텔과 같은 <b style="color:var(--g9)">태기로</b>에 <b style="color:var(--g9)">휘닉스 컨트리클럽</b>이 있습니다. 새벽에 서둘러 출발할 필요 없이, 조식을 들고 나가 라운딩하고 돌아와 쉬는 하루가 가능합니다.</p>
+
+    <div class="golf-hero reveal">
+      <img src="vzi-images/golf/course-signature.jpg" alt="호수를 넘기는 티샷 — 휘닉스 컨트리클럽" width="792" height="446" loading="lazy" decoding="async">
+      <div class="ov">
+        <b>32만 평의 산이 <em>그대로 코스</em>가 되다</b>
+        <p>깎아 만든 것이 아니라, 원래 있던 능선과 계곡을 그대로 살린 18홀. 해발 700m 고원의 공기 속에서 칩니다.</p>
+      </div>
+    </div>
+
+    <div class="golf-specs reveal">
+      <div><b>18홀</b><span>PAR 72</span></div>
+      <div><b>6,930<small style="font-size:.6em"> yd</small></b><span>6,340M</span></div>
+      <div><b>32만평</b><span>1,055,980㎡</span></div>
+      <div><b>1999</b><span>OPEN</span></div>
+    </div>
+
+    <div class="golf-courses">
+      <div class="golf-course reveal">
+        <div class="ph"><img src="vzi-images/golf/course-mountain.jpg" alt="휘닉스 컨트리클럽 마운틴 코스" width="803" height="602" loading="lazy" decoding="async"></div>
+        <div class="bd">
+          <p class="hole">1 – 9 HOLE</p>
+          <h3>마운틴 코스</h3>
+          <p>울창한 침엽수림이 홀과 홀을 갈라놓습니다. 페어웨이는 시원하게 열려 있지만, 그만큼 계산하고 쳐야 하는 코스입니다.</p>
+        </div>
+      </div>
+      <div class="golf-course reveal">
+        <div class="ph"><img src="vzi-images/golf/course-lake.jpg" alt="휘닉스 컨트리클럽 레이크 코스" width="792" height="594" loading="lazy" decoding="async"></div>
+        <div class="bd">
+          <p class="hole">10 – 18 HOLE</p>
+          <h3>레이크 코스</h3>
+          <p>7개의 호수가 홀을 따라 이어집니다. 돌아갈 것인가 넘길 것인가 — 매 홀 결정을 요구하는 코스입니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="golf-note reveal">
+      <b>⚑ 라운딩 전에 확인해 주세요</b>
+      <p>휘닉스 컨트리클럽은 <b>리조트 회원제</b>로 운영됩니다. 회원이 아니시라면 <b>회원 동반 또는 추천</b>이 있어야 라운딩이 가능하며, 예약은 골프장(예약실 1577-0755)에서 직접 진행됩니다.
+        저희는 골프장을 운영하지 않지만, <b>일정에 맞춘 객실과 조식 시간 조정, 늦은 체크아웃</b> 등 라운딩 전후를 편하게 만드는 부분을 도와드립니다.</p>
+    </div>
+
+    <div class="golf-cta reveal">
+      <p>골프 일정에 맞춰 묵으실 계획이라면, 라운딩 날짜와 인원을 남겨주세요.</p>
+      <a href="#reserve" class="btn btn-dark">골프 일정 문의</a>
+      <a href="https://map.naver.com/p/search/휘닉스컨트리클럽" target="_blank" rel="noopener" class="btn btn-ghost" style="color:var(--g9);border-color:var(--g9)">지도에서 보기</a>
+    </div>
+
+    <p class="insta-src reveal" style="margin-top:18px">강원특별자치도 평창군 봉평면 태기로 174 · 코스 정보 참고: <a href="https://tour.pc.go.kr/" target="_blank" rel="noopener">평창군 공식 관광</a> — 요금·운영은 골프장 공지를 확인해 주세요.</p>
+  </div>
+</section>
+
 <!-- LOCATION -->
 <section class="loc-sec" id="location">
   <div class="wrap">
@@ -1064,6 +1162,7 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
         <div class="near">
           <h3>호텔에서 가까운 곳</h3>
           <ul>
+            <li><b>휘닉스 컨트리클럽</b><span>차로 5분</span></li>
             <li><b>휘닉스 평창 스키장</b><span>도보 15분</span></li>
             <li><b>블루캐니언 워터파크</b><span>도보 15분</span></li>
             <li><b>태기산 전망대</b><span>차로 10분</span></li>
@@ -1153,6 +1252,14 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
         <div class="ans">총 <b>7가지 타입</b>입니다 — 슈페리어 패밀리 트윈, 주니어 스위트, 화이트 스위트, 테라스 스위트, 빌라 스위트, 빌라 듀플렉스 더블, 빌라 듀플렉스 패밀리.
           스탠다드 34.2㎡부터 화이트 스위트 105㎡까지이며, <b>전 객실이 온돌마루</b>라 아이가 있는 가족에게 특히 편합니다.
           <a href="#rooms">객실 섹션</a>에서 타입별 사진을 5컷씩 보실 수 있습니다.
+        </div>
+      </details>
+
+      <details class="reveal">
+        <summary>골프 치러 가는데 숙소로 괜찮을까요?</summary>
+        <div class="ans">호텔과 <b>같은 태기로에 휘닉스 컨트리클럽</b>이 있어 차로 5분이면 닿습니다. 새벽에 멀리서 출발하지 않아도 됩니다.
+          다만 <b>리조트 회원제 골프장</b>이라 회원이 아니시면 회원 동반 또는 추천이 필요하고, <b>티타임 예약은 골프장에서 직접</b> 하셔야 합니다.
+          <span class="tip">※ 저희는 골프장을 운영하지 않습니다. 대신 라운딩 일정에 맞춘 객실 배정, 조식 시간 조정, 늦은 체크아웃을 도와드립니다. <a href="#golf">골프 섹션</a>에서 코스를 보실 수 있습니다.</span>
         </div>
       </details>
 
