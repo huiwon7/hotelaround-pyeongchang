@@ -101,6 +101,7 @@
     {"@type":"Question","name":"아이와 함께 가기 좋나요?","acceptedAnswer":{"@type":"Answer","text":"여름 시즌에는 키즈 물놀이 시설을 운영하고, 아이가 있는 가족에게는 온돌형 객실이 인기가 많습니다. 걸어서 15분 거리에 블루캐니언 워터파크가 있습니다."}},
     {"@type":"Question","name":"단체·워크숍·세미나도 가능한가요?","acceptedAnswer":{"@type":"Answer","text":"가능합니다. 518객실 규모에 최대 180명 수용 연회장을 갖추고 있어 기업 워크숍, 세미나, 단체 행사를 진행할 수 있습니다."}},
     {"@type":"Question","name":"서울에서 얼마나 걸리나요?","acceptedAnswer":{"@type":"Answer","text":"영동고속도로 이용 시 서울에서 약 1시간 30분입니다. KTX 평창역에서는 택시로 약 19분(14km) 거리입니다."}},
+    {"@type":"Question","name":"차 없이 가도 되나요? 셔틀버스가 있나요?","acceptedAnswer":{"@type":"Answer","text":"KTX 평창역에서 호텔까지 셔틀버스를 운행합니다. 겨울 성수기에는 호텔을 거쳐 휘닉스파크까지 이어집니다. 여름 성수기는 11:30~19:00 30분 간격, 겨울 성수기는 12:00~20:00 60분 간격이며, 성수기에는 매일, 비수기에는 금·토·일 운행합니다. 성수기 기간과 요금, 사전 예약 필요 여부는 문의가 필요합니다."}},
     {"@type":"Question","name":"골프 치러 가는데 숙소로 괜찮을까요?","acceptedAnswer":{"@type":"Answer","text":"호텔과 같은 태기로에 휘닉스 컨트리클럽(18홀 파72)이 있어 차로 5분 거리입니다. 다만 리조트 회원제 골프장이라 회원이 아닌 경우 회원 동반 또는 추천이 필요하며, 티타임 예약은 골프장에서 직접 하셔야 합니다. 호텔은 라운딩 일정에 맞춘 객실 배정, 조식 시간 조정, 늦은 체크아웃을 지원합니다."}}
   ]
 }
@@ -424,6 +425,35 @@ body.lb-lock{overflow:hidden}
 .pkg-prog li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--g3)}
 .pkg-cta{margin-top:32px;display:flex;flex-wrap:wrap;align-items:center;gap:14px}
 .pkg-cta p{font-size:.9rem;color:var(--muted);max-width:420px;line-height:1.6}
+
+/* ---- 셔틀버스 (시설 섹션 내 가로형 카드) ---- */
+.fac-shuttle{grid-column:1/-1;background:var(--white);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  display:grid;grid-template-columns:.9fr 1.1fr;align-items:center}
+@media(max-width:860px){.fac-shuttle{grid-template-columns:1fr}}
+/* 가로 사진이라 세로로 늘리면 좌우가 잘린다 → 3:2 액자로 고정하고 세로 가운데 정렬 */
+.fac-shuttle .ph{aspect-ratio:3/2;overflow:hidden;background:var(--sand2);
+  margin:clamp(16px,2vw,24px);border-radius:12px}
+@media(max-width:860px){.fac-shuttle .ph{margin:clamp(16px,3vw,20px) clamp(16px,3vw,20px) 0}}
+.fac-shuttle .ph img{width:100%;height:100%;object-fit:cover}
+.fac-shuttle .bd{padding:clamp(22px,3vw,32px)}
+@media(max-width:860px){.fac-shuttle .bd{padding-top:clamp(18px,3vw,22px)}}
+.fac-shuttle .lbl{display:inline-flex;align-items:center;gap:7px;font-size:.72rem;font-weight:700;letter-spacing:.12em;
+  color:var(--wood);background:var(--sand2);border-radius:999px;padding:6px 13px}
+.fac-shuttle h3{font-size:1.32rem;color:var(--g9);margin:13px 0 6px}
+.fac-shuttle .sub{color:var(--muted);font-size:.9rem;line-height:1.6}
+.shuttle-runs{margin-top:18px;display:grid;gap:10px}
+.run{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--sand)}
+.run .rt{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:.9rem;font-weight:700;color:var(--g9)}
+.run .rt .season{font-size:.72rem;font-weight:700;letter-spacing:.06em;color:#fff;border-radius:999px;padding:4px 10px;white-space:nowrap}
+.run .rt .season.s{background:#4f7d6f}
+.run .rt .season.w{background:#6d8296}
+.run .rt .arrow{color:var(--wood);font-weight:400}
+.run .tm{margin-top:8px;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.85rem;color:var(--muted)}
+.run .tm b{color:var(--g9);font-variant-numeric:tabular-nums}
+.shuttle-days{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+.shuttle-days span{font-size:.8rem;font-weight:600;color:var(--g9);background:var(--sand2);border-radius:999px;padding:7px 14px}
+.shuttle-note{margin-top:14px;font-size:.8rem;color:var(--muted);line-height:1.65}
+.shuttle-note a{color:var(--g5);font-weight:700;text-decoration:underline}
 
 /* ---- 골프 ---- */
 .golf-sec{background:var(--sand)}
@@ -937,6 +967,33 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
       <div class="f reveal"><img src="vzi-images/facilities/yoga.jpg" alt="웰니스" width="1200" height="1600" loading="lazy" decoding="async"><div class="cap">웰니스 프로그램<small>요가 · 명상 · 산책</small></div></div>
       <div class="f reveal"><img src="vzi-images/facilities/kids-pool.jpg" alt="키즈" width="1086" height="1448" loading="lazy" decoding="async"><div class="cap">키즈 · 물놀이<small>아이들의 신나는 시간</small></div></div>
       <div class="f reveal"><img src="vzi-images/facilities/fitness.jpg" alt="피트니스" width="1600" height="900" loading="lazy" decoding="async"><div class="cap">피트니스<small>여행 중에도 나의 루틴</small></div></div>
+
+      <div class="fac-shuttle reveal" id="shuttle">
+        <div class="ph"><img src="vzi-images/facilities/shuttle.jpg" alt="호텔어라운드 평창 셔틀버스" width="1200" height="800" loading="lazy" decoding="async"></div>
+        <div class="bd">
+          <span class="lbl">🚌 SHUTTLE BUS</span>
+          <h3>역에서 호텔까지, 셔틀로</h3>
+          <p class="sub">KTX 평창역에 내리시면 택시를 잡지 않으셔도 됩니다. 짐이 많은 가족 여행이나 겨울 스키 장비가 있을 때 특히 편합니다.</p>
+
+          <div class="shuttle-runs">
+            <div class="run">
+              <p class="rt"><span class="season s">여름 성수기</span> KTX 평창역 <span class="arrow">→</span> 호텔어라운드 평창</p>
+              <p class="tm"><span>운행 <b>11:30 ~ 19:00</b></span><span>배차 <b>30분</b> 간격</span></p>
+            </div>
+            <div class="run">
+              <p class="rt"><span class="season w">겨울 성수기</span> KTX 평창역 <span class="arrow">→</span> 호텔 <span class="arrow">→</span> 휘닉스파크</p>
+              <p class="tm"><span>운행 <b>12:00 ~ 20:00</b></span><span>배차 <b>60분</b> 간격</span></p>
+            </div>
+          </div>
+
+          <div class="shuttle-days">
+            <span>성수기 — 매일 운행</span>
+            <span>비수기 — 금 · 토 · 일 운행</span>
+          </div>
+
+          <p class="shuttle-note">※ 성수기 기간과 탑승 요금, 사전 예약 필요 여부는 <a href="#reserve">예약 문의</a> 또는 전화(<a href="tel:0338328088">033-832-8088</a>)로 확인해 주세요. 기상·도로 사정에 따라 운행이 조정될 수 있습니다.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1142,6 +1199,15 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
         <div class="way-item">
           <div class="ic">🚌</div>
           <div>
+            <h3>호텔 셔틀버스</h3>
+            <p><b>KTX 평창역 → 호텔</b>로 셔틀을 운행합니다. 겨울 성수기에는 <b>휘닉스파크</b>까지 이어집니다.<br>
+              여름 성수기 <b>11:30~19:00</b>(30분 간격) · 겨울 성수기 <b>12:00~20:00</b>(60분 간격)<br>
+              성수기 매일, 비수기 <b>금·토·일</b> 운행 — <a href="#shuttle" style="color:var(--gold-sf);font-weight:700;text-decoration:underline">자세히 보기</a></p>
+          </div>
+        </div>
+        <div class="way-item">
+          <div class="ic">🚌</div>
+          <div>
             <h3>시외버스</h3>
             <p><b>장평시외버스터미널</b>에서 이동 후, 휘닉스파크 정류장 하차 시 <b>도보 약 1.3km</b>.<br>짐이 많다면 터미널에서 택시를 권해 드립니다.</p>
           </div>
@@ -1252,6 +1318,15 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
         <div class="ans">총 <b>7가지 타입</b>입니다 — 슈페리어 패밀리 트윈, 주니어 스위트, 화이트 스위트, 테라스 스위트, 빌라 스위트, 빌라 듀플렉스 더블, 빌라 듀플렉스 패밀리.
           스탠다드 34.2㎡부터 화이트 스위트 105㎡까지이며, <b>전 객실이 온돌마루</b>라 아이가 있는 가족에게 특히 편합니다.
           <a href="#rooms">객실 섹션</a>에서 타입별 사진을 5컷씩 보실 수 있습니다.
+        </div>
+      </details>
+
+      <details class="reveal">
+        <summary>차 없이 가도 되나요? 셔틀버스가 있나요?</summary>
+        <div class="ans">네. <b>KTX 평창역에서 호텔까지 셔틀버스</b>를 운행합니다. 겨울 성수기에는 호텔을 거쳐 <b>휘닉스파크</b>까지 이어집니다.
+          여름 성수기는 <b>11:30~19:00 30분 간격</b>, 겨울 성수기는 <b>12:00~20:00 60분 간격</b>이며,
+          성수기에는 매일, 비수기에는 <b>금·토·일</b> 운행합니다.
+          <span class="tip">※ 성수기 기간과 요금, 사전 예약 필요 여부는 문의해 주세요. 기상·도로 사정에 따라 운행이 조정될 수 있습니다. <a href="#shuttle">셔틀 안내</a>에서 노선을 확인하실 수 있습니다.</span>
         </div>
       </details>
 
