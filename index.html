@@ -167,10 +167,12 @@ section{padding-block:clamp(60px,9vw,120px)}
 .hero-bg{position:absolute;inset:0;z-index:-2;background:url('vzi-images/hero/exterior-1.jpg') center/cover}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;
   background:linear-gradient(180deg,rgba(37,48,31,.55),rgba(37,48,31,.4) 45%,rgba(37,48,31,.85))}
-.hero-inner{padding-top:90px;max-width:860px}
+/* .hero가 display:flex 라 자식의 min-width:auto 때문에 좁은 화면에서 줄바꿈 대신 넘친다 */
+.hero-inner{padding-top:90px;max-width:960px;min-width:0;width:100%}
 .hero .kick{display:inline-flex;align-items:center;gap:9px;font-size:.8rem;letter-spacing:.26em;color:var(--gold-sf);font-weight:700;margin-bottom:22px}
 .hero .kick::before{content:"";width:34px;height:1.5px;background:var(--gold)}
-.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.95rem,5.2vw,3.3rem);line-height:1.12;letter-spacing:.01em;word-break:keep-all}
+/* 두 줄 카피가 길어 최대 크기를 낮춰야 '시간'이 다음 줄로 떨어지지 않는다 */
+.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.72rem,4.4vw,2.95rem);line-height:1.18;letter-spacing:.01em;word-break:keep-all}
 .hero h1 em{font-style:normal;color:var(--gold-sf)}
 .hero .sub{margin-top:24px;font-size:clamp(1.02rem,2.4vw,1.22rem);max-width:560px;color:#ece6d8}
 .hero-cta{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}
@@ -703,7 +705,7 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
   <div class="hero-bg"></div>
   <div class="wrap hero-inner">
     <span class="kick">사계절 라이프스타일 리조트 · 평창 봉평</span>
-    <h1>해발 700m 평창 고원에서 보내는<br><em>가장 시원한 여름휴가!</em></h1>
+    <h1>숨이 깊어지는 높이, <em>해발 700m</em><br>계절이 바뀔 때마다, <em>나를 회복하는 시간</em></h1>
     <p class="sub">객실이 아니라, 평창에서 보내는 ‘하루’를 예약하는 곳. 시원한 여름과 숲의 고요, 가족과의 바비큐, 그리고 별을 보는 밤이 기다립니다.</p>
     <div class="hero-cta">
       <a href="#reserve" class="btn btn-primary btn-lg">예약 · 문의하기</a>
