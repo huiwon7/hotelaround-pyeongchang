@@ -427,6 +427,40 @@ body.lb-lock{overflow:hidden}
 .pkg-cta{margin-top:32px;display:flex;flex-wrap:wrap;align-items:center;gap:14px}
 .pkg-cta p{font-size:.9rem;color:var(--muted);max-width:420px;line-height:1.6}
 
+/* ---- 웰니스 숲길 (평창에서의 하루 섹션 내 가로형 카드) ---- */
+.forest{margin-top:16px;background:var(--g7);border-radius:16px;overflow:hidden;
+  display:grid;grid-template-columns:.62fr 1.38fr;align-items:center}
+@media(max-width:880px){.forest{grid-template-columns:1fr}}
+.forest .ph{aspect-ratio:3/4;overflow:hidden;position:relative;margin:clamp(16px,2vw,22px);border-radius:12px;
+  cursor:pointer;background:var(--g8)}
+@media(max-width:880px){.forest .ph{aspect-ratio:16/10;margin:clamp(16px,3vw,20px) clamp(16px,3vw,20px) 0}}
+.forest .ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.forest .ph:hover img{transform:scale(1.05)}
+.forest .ph:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.forest .ph .cnt{position:absolute;top:11px;right:11px;background:rgba(13,23,18,.82);color:#fff;
+  font-size:.7rem;font-weight:700;padding:5px 10px;border-radius:999px;backdrop-filter:blur(3px)}
+.forest .bd{padding:clamp(20px,3vw,30px);color:#fff}
+@media(max-width:880px){.forest .bd{padding-top:clamp(18px,3vw,22px)}}
+.forest .lbl{display:inline-flex;align-items:center;gap:7px;font-size:.72rem;font-weight:700;letter-spacing:.14em;
+  color:var(--gold-sf);border:1px solid rgba(217,189,122,.4);border-radius:999px;padding:6px 13px}
+.forest h3{font-size:1.3rem;margin:13px 0 8px}
+.forest h3 em{font-style:normal;color:var(--gold-sf)}
+.forest>.bd>p{font-size:.9rem;color:var(--g3);line-height:1.75;max-width:620px;word-break:keep-all}
+.trails{margin-top:18px;display:grid;gap:8px}
+.trail{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;
+  background:var(--g8);border-radius:11px;padding:12px 15px}
+@media(max-width:620px){.trail{grid-template-columns:auto 1fr;row-gap:6px}.trail .lv{grid-column:2;justify-self:start}}
+.trail .no{width:26px;height:26px;border-radius:50%;background:var(--g9);color:var(--gold-sf);
+  display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex:none}
+.trail .rt{font-size:.85rem;color:#fff;line-height:1.5}
+.trail .rt small{display:block;color:var(--g3);font-size:.76rem;margin-top:3px;font-variant-numeric:tabular-nums}
+.trail .rt small b{color:var(--gold-sf)}
+.trail .lv{font-size:.74rem;font-weight:700;border-radius:999px;padding:5px 11px;white-space:nowrap}
+.trail .lv.e{background:rgba(122,161,92,.24);color:#bcd6a5}
+.trail .lv.m{background:rgba(189,148,64,.24);color:var(--gold-sf)}
+.trail .lv.h{background:rgba(192,87,70,.24);color:#e8a99c}
+.forest .note{margin-top:15px;font-size:.79rem;color:var(--g3);line-height:1.7}
+
 /* ---- 봉평 카페 ---- */
 .cafe-sec{background:var(--white)}
 .cafe-list{margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
@@ -738,6 +772,38 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
         <div class="bd"><div class="t">EVENING</div><h3>노을과 바비큐</h3><p>야외 바비큐, 버스킹, 그리고 붉게 물드는 하늘.</p></div></div>
       <div class="moment reveal"><div class="ph"><img src="vzi-images/attractions/stargazing.jpg" alt="별보기" width="1200" height="800" loading="lazy" decoding="async"></div>
         <div class="bd"><div class="t">NIGHT</div><h3>불멍과 별보기</h3><p>모닥불 앞에서, 도심에선 볼 수 없던 별을 오래 바라보는 밤.</p></div></div>
+    </div>
+
+    <div class="forest reveal" id="forest">
+      <div class="ph" role="button" tabindex="0" data-dir="vzi-images/forest" data-files="wellness-trail-1.jpg,wellness-trail-map.jpg" data-name="웰니스 숲길">
+        <img src="vzi-images/forest/wellness-trail-1.jpg" alt="웰니스 숲길 — 낙엽송 사이로 난 흙길" width="603" height="791" loading="lazy" decoding="async">
+        <span class="cnt">📷 2 · 코스 지도</span>
+      </div>
+      <div class="bd">
+        <span class="lbl">🌲 WELLNESS TRAIL</span>
+        <h3>호텔 문을 나서면, <em>웰니스 숲길</em></h3>
+        <p>차를 탈 필요가 없습니다. 걸어서 5분이면 숲 입구입니다. 낙엽송과 잣나무, 자작나무와 산죽 군락을 차례로 지나는 흙길이라, 발밑이 푹신하고 한여름에도 그늘이 이어집니다. 아침 산책으로 짧게 걷거나, 작정하고 정상 몽블랑까지 올라가거나 — 그날 컨디션대로 고르시면 됩니다.</p>
+
+        <div class="trails">
+          <div class="trail">
+            <span class="no">1</span>
+            <span class="rt">콘도 → 쉼터1 → 삼거리 → 행사장<small><b>2.6km</b> · 약 80분</small></span>
+            <span class="lv e">쉬움</span>
+          </div>
+          <div class="trail">
+            <span class="no">2</span>
+            <span class="rt">콘도 → 삼거리 → 고개마루 → 쉼터3 → 도토리쉼터 → 콘도<small><b>4.9km</b> · 약 160분 · 한 바퀴 도는 순환 코스</small></span>
+            <span class="lv m">보통</span>
+          </div>
+          <div class="trail">
+            <span class="no">3</span>
+            <span class="rt">콘도 → 도토리쉼터 → 몽블랑 정상<small><b>2.5km</b> · 약 90분 · 짧지만 계속 오르막</small></span>
+            <span class="lv h">어려움</span>
+          </div>
+        </div>
+
+        <p class="note">※ 휘닉스 평창 쪽 숲길이며 호텔이 운영하는 시설은 아닙니다. 사진을 누르면 <b style="color:var(--gold-sf)">코스 안내도</b>를 크게 보실 수 있습니다. 겨울철에는 눈·결빙으로 통행이 제한될 수 있으니 프런트에 확인해 주세요.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1676,8 +1742,8 @@ document.getElementById('rretry').addEventListener('click',send);
     if(opener)opener.focus();
   }
 
-  // 객실 카드와 카페 카드가 같은 라이트박스를 쓴다
-  document.querySelectorAll('.room[data-dir],.cafe-item[data-dir]').forEach(b=>{
+  // data-dir + data-files 를 가진 요소는 모두 같은 라이트박스를 쓴다 (객실·카페·숲길)
+  document.querySelectorAll('[data-dir][data-files]').forEach(b=>{
     b.addEventListener('click',()=>open(b));
     b.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open(b);}});
   });
