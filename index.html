@@ -148,7 +148,7 @@ section{padding-block:clamp(60px,9vw,120px)}
 .hdr.solid .brand{color:var(--g9)}
 .brand b{font-family:var(--serif);font-size:1.3rem;letter-spacing:.2em;font-weight:700}
 .brand small{font-size:.66rem;letter-spacing:.16em;opacity:.85}
-.nav-links{display:flex;align-items:center;gap:26px}
+.nav-links{display:flex;align-items:center;gap:20px}
 .nav-links a{color:#fff;font-size:.92rem;font-weight:600;transition:opacity .25s,color .4s}
 .hdr.solid .nav-links a{color:var(--ink)}
 .nav-links a:not(.nav-cta):hover{opacity:.6}
@@ -156,10 +156,10 @@ section{padding-block:clamp(60px,9vw,120px)}
 .hdr.solid .nav-cta{border-color:var(--g9)}
 .nav-cta:hover{background:var(--g9);color:#fff!important}
 .hdr.solid .nav-cta:hover{color:#fff!important}
-/* 항목이 늘어난 만큼 중간 폭에서는 간격을 좁히고 가장 긴 항목부터 접는다 */
-@media(max-width:1080px){.nav-links{gap:18px}.nav-links a[href="#day"]{display:none}}
-@media(max-width:1000px){.nav-links a[href="#facilities"]{display:none}}
-@media(max-width:940px){.nav-links{gap:14px}.nav-links a[href="#eat"],.nav-links a[href="#seasons"]{display:none}}
+/* 항목이 많아 폭이 좁아질수록 우선순위가 낮은 것부터 단계적으로 접는다 */
+@media(max-width:1180px){.nav-links{gap:16px}.nav-links a[href="#day"]{display:none}}
+@media(max-width:1060px){.nav-links a[href="#cafe"],.nav-links a[href="#facilities"]{display:none}}
+@media(max-width:960px){.nav-links{gap:13px}.nav-links a[href="#eat"],.nav-links a[href="#seasons"]{display:none}}
 @media(max-width:820px){.nav-links a:not(.nav-cta){display:none}}
 
 /* hero */
@@ -427,6 +427,25 @@ body.lb-lock{overflow:hidden}
 .pkg-cta{margin-top:32px;display:flex;flex-wrap:wrap;align-items:center;gap:14px}
 .pkg-cta p{font-size:.9rem;color:var(--muted);max-width:420px;line-height:1.6}
 
+/* ---- 봉평 카페 ---- */
+.cafe-sec{background:var(--white)}
+.cafe-list{margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.cafe-item{position:relative;background:var(--sand);border:1px solid var(--line);border-radius:16px;
+  padding:26px 24px 22px;display:flex;flex-direction:column;transition:transform .35s var(--ease),box-shadow .35s}
+.cafe-item:hover{transform:translateY(-5px);box-shadow:var(--sh)}
+.cafe-item .rank{position:absolute;top:-13px;left:24px;width:34px;height:34px;border-radius:50%;
+  background:var(--g9);color:var(--gold-sf);display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:1.12rem;font-weight:700;border:3px solid var(--white)}
+.cafe-item h3{font-family:var(--serif);font-size:1.36rem;color:var(--g9);font-weight:600;margin:6px 0 6px}
+.cafe-item .menu{color:var(--g5);font-size:.88rem;font-weight:600}
+.cafe-item .desc{color:var(--muted);font-size:.87rem;margin-top:10px;flex:1;line-height:1.65}
+.cafe-item .meta{margin-top:16px;padding-top:13px;border-top:1px dashed var(--line);display:grid;gap:4px;font-size:.79rem;color:var(--muted)}
+/* 오시는 길의 .near(어두운 박스)와 이름이 겹치지 않도록 .dist 사용 */
+.cafe-item .meta .dist{color:var(--wood);font-weight:700}
+.cafe-item .meta a{color:var(--g5);font-weight:700}
+.cafe-foot{margin-top:22px;font-size:.85rem;color:var(--muted);line-height:1.7}
+.cafe-foot b{color:var(--g9)}
+
 /* ---- 셔틀버스 (시설 섹션 내 가로형 카드) ---- */
 .fac-shuttle{grid-column:1/-1;background:var(--white);border:1px solid var(--line);border-radius:16px;overflow:hidden;
   display:grid;grid-template-columns:.9fr 1.1fr;align-items:center}
@@ -635,6 +654,7 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
       <a href="#seasons">사계절</a>
       <a href="#insta">핫플</a>
       <a href="#eat">맛집</a>
+      <a href="#cafe">카페</a>
       <a href="#rooms">객실</a>
       <a href="#package">패키지</a>
       <a href="#golf">골프</a>
@@ -900,6 +920,80 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
 
     <p class="eat-note reveal"><b>이것도 평창의 맛</b> — 겨울엔 <b>송어회</b>, 대관령 쪽으로 나가면 <b>한우</b>, 아침으로는 <b>황태해장국</b>이 유명합니다. 그날 어디가 문을 여는지는 <a href="#reserve" style="color:var(--g5);font-weight:700;text-decoration:underline">체크인 전날 카카오톡</a>으로 안내해 드립니다.</p>
     <p class="insta-src reveal">맛집 정보 참고: <a href="https://korean.visitkorea.or.kr/" target="_blank" rel="noopener">대한민국 구석구석</a> · <a href="https://www.diningcode.com/" target="_blank" rel="noopener">다이닝코드</a> — 영업시간·휴무는 방문 전 확인해 주세요.</p>
+  </div>
+</section>
+
+<!-- CAFE -->
+<section class="cafe-sec" id="cafe">
+  <div class="wrap">
+    <p class="eyebrow reveal">Cafe</p>
+    <h2 class="sect-title reveal">봉평 카페, 이 다섯 곳</h2>
+    <p class="sect-lead reveal">메밀 아이스크림부터 감자빵까지 — 봉평에서 가장 많이 찾는 카페 다섯 곳입니다. 세 곳은 호텔과 같은 <b style="color:var(--g9)">태기로</b>에 있어 오가는 길에 들르기 좋습니다.</p>
+
+    <div class="cafe-list">
+      <div class="cafe-item reveal">
+        <span class="rank">1</span>
+        <h3>파인리프</h3>
+        <p class="menu">카페 · 디저트</p>
+        <p class="desc">계곡을 옆에 두고 앉는 자리. 휘닉스파크 가까이에 있어 스키나 라운딩 전후로 들르기 좋습니다.</p>
+        <div class="meta">
+          <div class="dist">호텔과 같은 태기로 · 차로 5분</div>
+          <div>봉평면 태기로 396-6</div>
+          <div>☎ <a href="tel:050714271213">0507-1427-1213</a></div>
+        </div>
+      </div>
+
+      <div class="cafe-item reveal">
+        <span class="rank">2</span>
+        <h3>트리고 평창본점</h3>
+        <p class="menu">메밀 아이스크림 · 소금빵</p>
+        <p class="desc">봉평이니까 마셔야 하는 메밀. 담백하고 고소한 메밀 아이스크림이 대표 메뉴입니다. 이효석문화마을 산책과 묶기 좋습니다.</p>
+        <div class="meta">
+          <div class="dist">이효석문화마을 인근</div>
+          <div>봉평면 메밀꽃길 10-1</div>
+          <div>☎ <a href="tel:050713875758">0507-1387-5758</a></div>
+        </div>
+      </div>
+
+      <div class="cafe-item reveal">
+        <span class="rank">3</span>
+        <h3>숨쉬는제빵소</h3>
+        <p class="menu">감자빵 · 베이커리</p>
+        <p class="desc">강원도에 왔으면 감자빵. 봉평전통시장 바로 옆이라 시장 구경하고 빵 사서 나오기 좋습니다.</p>
+        <div class="meta">
+          <div class="dist">봉평전통시장 인근</div>
+          <div>봉평면 기풍3길 29 B1</div>
+          <div>☎ <a href="tel:050714789297">0507-1478-9297</a></div>
+        </div>
+      </div>
+
+      <div class="cafe-item reveal">
+        <span class="rank">4</span>
+        <h3>꼬로베이</h3>
+        <p class="menu">브런치 · 감자크림파스타</p>
+        <p class="desc">커피만으로 아쉬울 때. 감자크림파스타가 대표 메뉴인 브런치 카페라 늦은 아침을 해결하기 좋습니다.</p>
+        <div class="meta">
+          <div class="dist">호텔과 같은 태기로 · 차로 5분</div>
+          <div>봉평면 태기로 68</div>
+          <div>☎ <a href="tel:0333322649">033-332-2649</a></div>
+        </div>
+      </div>
+
+      <div class="cafe-item reveal">
+        <span class="rank">5</span>
+        <h3>싼타버거</h3>
+        <p class="menu">산타버거 · 숀화이트버거</p>
+        <p class="desc">아이들이 좋아하는 수제버거. 면온IC에서 1.6km라 들어오거나 나가는 길에 들르기 편하고, 주차장이 넓습니다.</p>
+        <div class="meta">
+          <div class="dist">호텔과 같은 태기로 · 차로 5분</div>
+          <div>봉평면 태기로 431</div>
+          <div>☎ <a href="tel:050713563329">0507-1356-3329</a></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="cafe-foot reveal"><b>사진 찍기 좋은 카페</b>를 찾으신다면 <a href="#insta" style="color:var(--g5);font-weight:700;text-decoration:underline">평창 인스타 핫플</a>에 카페 6.55·7HUNDRED·마추픽추·카페마카·메밀스케치를 따로 모아두었습니다.</p>
+    <p class="insta-src reveal">영업시간·휴무는 방문 전 확인해 주세요. 카페 정보는 변동될 수 있습니다.</p>
   </div>
 </section>
 
