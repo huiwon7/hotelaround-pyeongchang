@@ -65,7 +65,8 @@
     {"@type":"LocationFeatureSpecification","name":"조식 다이닝","value":true},
     {"@type":"LocationFeatureSpecification","name":"연회장·세미나실","value":true},
     {"@type":"LocationFeatureSpecification","name":"온돌 객실","value":true},
-    {"@type":"LocationFeatureSpecification","name":"무료 주차","value":true}
+    {"@type":"LocationFeatureSpecification","name":"무료 주차","value":true},
+    {"@type":"LocationFeatureSpecification","name":"KTX 평창역 무료 셔틀버스","value":true}
   ],
   "makesOffer": [
     {
@@ -101,7 +102,7 @@
     {"@type":"Question","name":"아이와 함께 가기 좋나요?","acceptedAnswer":{"@type":"Answer","text":"여름 시즌에는 키즈 물놀이 시설을 운영하고, 아이가 있는 가족에게는 온돌형 객실이 인기가 많습니다. 걸어서 15분 거리에 블루캐니언 워터파크가 있습니다."}},
     {"@type":"Question","name":"단체·워크숍·세미나도 가능한가요?","acceptedAnswer":{"@type":"Answer","text":"가능합니다. 518객실 규모에 최대 180명 수용 연회장을 갖추고 있어 기업 워크숍, 세미나, 단체 행사를 진행할 수 있습니다."}},
     {"@type":"Question","name":"서울에서 얼마나 걸리나요?","acceptedAnswer":{"@type":"Answer","text":"영동고속도로 이용 시 서울에서 약 1시간 30분입니다. KTX 평창역에서는 택시로 약 19분(14km) 거리입니다."}},
-    {"@type":"Question","name":"차 없이 가도 되나요? 셔틀버스가 있나요?","acceptedAnswer":{"@type":"Answer","text":"KTX 평창역에서 호텔까지 셔틀버스를 운행합니다. 겨울 성수기에는 호텔을 거쳐 휘닉스파크까지 이어집니다. 여름 성수기는 11:30~19:00 30분 간격, 겨울 성수기는 12:00~20:00 60분 간격이며, 성수기에는 매일, 비수기에는 금·토·일 운행합니다. 성수기 기간과 요금, 사전 예약 필요 여부는 문의가 필요합니다."}},
+    {"@type":"Question","name":"차 없이 가도 되나요? 셔틀버스가 있나요?","acceptedAnswer":{"@type":"Answer","text":"KTX 평창역에서 호텔까지 무료 셔틀버스를 운행하며, 사전 예약 없이 이용하실 수 있습니다. 겨울 성수기에는 호텔을 거쳐 휘닉스파크까지 이어집니다. 여름 성수기는 11:30~19:00 30분 간격, 겨울 성수기는 12:00~20:00 60분 간격이며, 성수기에는 매일, 비수기에는 금·토·일 운행합니다."}},
     {"@type":"Question","name":"골프 치러 가는데 숙소로 괜찮을까요?","acceptedAnswer":{"@type":"Answer","text":"호텔과 같은 태기로에 휘닉스 컨트리클럽(18홀 파72)이 있어 차로 5분 거리입니다. 다만 리조트 회원제 골프장이라 회원이 아닌 경우 회원 동반 또는 추천이 필요하며, 티타임 예약은 골프장에서 직접 하셔야 합니다. 호텔은 라운딩 일정에 맞춘 객실 배정, 조식 시간 조정, 늦은 체크아웃을 지원합니다."}}
   ]
 }
@@ -452,6 +453,7 @@ body.lb-lock{overflow:hidden}
 .run .tm b{color:var(--g9);font-variant-numeric:tabular-nums}
 .shuttle-days{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
 .shuttle-days span{font-size:.8rem;font-weight:600;color:var(--g9);background:var(--sand2);border-radius:999px;padding:7px 14px}
+.shuttle-days span.free{background:var(--g9);color:var(--gold-sf);font-weight:700}
 .shuttle-note{margin-top:14px;font-size:.8rem;color:var(--muted);line-height:1.65}
 .shuttle-note a{color:var(--g5);font-weight:700;text-decoration:underline}
 
@@ -972,8 +974,8 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
         <div class="ph"><img src="vzi-images/facilities/shuttle.jpg" alt="호텔어라운드 평창 셔틀버스" width="1200" height="800" loading="lazy" decoding="async"></div>
         <div class="bd">
           <span class="lbl">🚌 SHUTTLE BUS</span>
-          <h3>역에서 호텔까지, 셔틀로</h3>
-          <p class="sub">KTX 평창역에 내리시면 택시를 잡지 않으셔도 됩니다. 짐이 많은 가족 여행이나 겨울 스키 장비가 있을 때 특히 편합니다.</p>
+          <h3>역에서 호텔까지, 무료 셔틀로</h3>
+          <p class="sub">KTX 평창역에 내리시면 택시를 잡지 않으셔도 됩니다. <b style="color:var(--g9)">요금도 예약도 없이</b> 시간에 맞춰 타시면 됩니다. 짐이 많은 가족 여행이나 겨울 스키 장비가 있을 때 특히 편합니다.</p>
 
           <div class="shuttle-runs">
             <div class="run">
@@ -987,11 +989,13 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
           </div>
 
           <div class="shuttle-days">
+            <span class="free">투숙객 무료</span>
+            <span>예약 없이 탑승</span>
             <span>성수기 — 매일 운행</span>
             <span>비수기 — 금 · 토 · 일 운행</span>
           </div>
 
-          <p class="shuttle-note">※ 성수기 기간과 탑승 요금, 사전 예약 필요 여부는 <a href="#reserve">예약 문의</a> 또는 전화(<a href="tel:0338328088">033-832-8088</a>)로 확인해 주세요. 기상·도로 사정에 따라 운행이 조정될 수 있습니다.</p>
+          <p class="shuttle-note">※ 성수기 기간과 탑승 위치는 <a href="#reserve">예약 문의</a> 또는 전화(<a href="tel:0338328088">033-832-8088</a>)로 확인해 주세요. 기상·도로 사정에 따라 운행이 조정될 수 있습니다.</p>
         </div>
       </div>
     </div>
@@ -1199,10 +1203,10 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
         <div class="way-item">
           <div class="ic">🚌</div>
           <div>
-            <h3>호텔 셔틀버스</h3>
+            <h3>호텔 셔틀버스 <b style="font-size:.78rem">무료</b></h3>
             <p><b>KTX 평창역 → 호텔</b>로 셔틀을 운행합니다. 겨울 성수기에는 <b>휘닉스파크</b>까지 이어집니다.<br>
               여름 성수기 <b>11:30~19:00</b>(30분 간격) · 겨울 성수기 <b>12:00~20:00</b>(60분 간격)<br>
-              성수기 매일, 비수기 <b>금·토·일</b> 운행 — <a href="#shuttle" style="color:var(--gold-sf);font-weight:700;text-decoration:underline">자세히 보기</a></p>
+              성수기 매일, 비수기 <b>금·토·일</b> 운행. <b>예약 없이</b> 타시면 됩니다 — <a href="#shuttle" style="color:var(--gold-sf);font-weight:700;text-decoration:underline">자세히 보기</a></p>
           </div>
         </div>
         <div class="way-item">
@@ -1323,10 +1327,11 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
 
       <details class="reveal">
         <summary>차 없이 가도 되나요? 셔틀버스가 있나요?</summary>
-        <div class="ans">네. <b>KTX 평창역에서 호텔까지 셔틀버스</b>를 운행합니다. 겨울 성수기에는 호텔을 거쳐 <b>휘닉스파크</b>까지 이어집니다.
+        <div class="ans">네. <b>KTX 평창역에서 호텔까지 무료 셔틀버스</b>를 운행합니다. <b>사전 예약 없이</b> 시간에 맞춰 타시면 됩니다.
+          겨울 성수기에는 호텔을 거쳐 <b>휘닉스파크</b>까지 이어집니다.
           여름 성수기는 <b>11:30~19:00 30분 간격</b>, 겨울 성수기는 <b>12:00~20:00 60분 간격</b>이며,
           성수기에는 매일, 비수기에는 <b>금·토·일</b> 운행합니다.
-          <span class="tip">※ 성수기 기간과 요금, 사전 예약 필요 여부는 문의해 주세요. 기상·도로 사정에 따라 운행이 조정될 수 있습니다. <a href="#shuttle">셔틀 안내</a>에서 노선을 확인하실 수 있습니다.</span>
+          <span class="tip">※ 성수기 기간과 탑승 위치는 문의해 주세요. 기상·도로 사정에 따라 운행이 조정될 수 있습니다. <a href="#shuttle">셔틀 안내</a>에서 노선을 확인하실 수 있습니다.</span>
         </div>
       </details>
 
