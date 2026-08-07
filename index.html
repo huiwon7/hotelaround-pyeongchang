@@ -274,22 +274,6 @@ a.season-spot:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .spot .ov b{font-size:1.04rem}
 .spot .ov .hh{margin-top:5px;font-size:.76rem;color:var(--gold-sf);font-weight:600;line-height:1.45}
 .spot .badge{position:absolute;top:12px;left:12px;background:rgba(255,255,255,.92);color:var(--g9);font-size:.68rem;font-weight:700;padding:4px 9px;border-radius:999px}
-.cafe-note{margin-top:32px;background:var(--sand);border-radius:18px;padding:clamp(22px,3.5vw,30px)}
-.cafe-note h4{color:var(--g9);font-size:1.15rem;display:flex;align-items:center;gap:8px}
-.cafe-note p{color:var(--muted);font-size:.95rem;margin-top:6px}
-.cafe-note .clist{margin-top:16px;display:flex;flex-wrap:wrap;gap:10px}
-.cafe-note .clist span{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:.86rem;color:var(--muted)}
-.cafe-note .clist span b{color:var(--g9);font-weight:700}
-.cafe-grid{margin-top:18px;display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
-@media(max-width:1000px){.cafe-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:640px){.cafe-grid{grid-template-columns:1fr 1fr}}
-.cafe-card{background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 10px 26px -20px rgba(37,48,31,.4)}
-.cafe-card .ph{aspect-ratio:4/3;overflow:hidden}
-.cafe-card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
-.cafe-card:hover .ph img{transform:scale(1.06)}
-.cafe-card .bd{padding:12px 13px 14px}
-.cafe-card .bd b{color:var(--g9);font-size:.95rem}
-.cafe-card .bd p{color:var(--muted);font-size:.78rem;margin-top:3px;line-height:1.4}
 .insta-src{margin-top:22px;font-size:.78rem;color:var(--muted)}
 .insta-src a{color:var(--g5);font-weight:600}
 
@@ -933,18 +917,7 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
       <div class="spot reveal"><span class="badge">📷 포토스팟</span><img src="vzi-images/attractions/blue-canyon.jpg" alt="평창 계곡" width="760" height="460" loading="lazy" decoding="async"><div class="ov"><b>평창 계곡 물놀이</b><span class="hh">#여름 #물멍 #청량</span></div></div>
     </div>
 
-    <div class="cafe-note reveal">
-      <h4>☕ 감성 카페도 놓치지 마세요</h4>
-      <p>고랭지 배추밭 뷰부터 알파카 체험, 숲속 루프탑까지 — 평창·대관령·봉평의 인스타 카페.</p>
-      <div class="cafe-grid">
-        <div class="cafe-card"><div class="ph"><img src="vzi-images/cafe/cafe655.jpg" alt="카페 6.55" width="1024" height="768" loading="lazy" decoding="async"></div><div class="bd"><b>카페 6.55</b><p>대관령 고랭지 배추밭 뷰·소금빵</p></div></div>
-        <div class="cafe-card"><div class="ph"><img src="vzi-images/cafe/7hundred.jpg" alt="7HUNDRED" width="750" height="562" loading="lazy" decoding="async"></div><div class="bd"><b>7HUNDRED</b><p>3층 대형 로스터리·커피박물관</p></div></div>
-        <div class="cafe-card"><div class="ph"><img src="vzi-images/cafe/machupicchu.jpg" alt="마추픽추" width="750" height="562" loading="lazy" decoding="async"></div><div class="bd"><b>마추픽추</b><p>알파카 체험·야외정원</p></div></div>
-        <div class="cafe-card"><div class="ph"><img src="vzi-images/cafe/cafemaka.jpg" alt="카페마카" width="960" height="720" loading="lazy" decoding="async"></div><div class="bd"><b>카페마카</b><p>봉평 숲속 루프탑·수제 꽃차</p></div></div>
-        <div class="cafe-card"><div class="ph"><img src="vzi-images/cafe/memilsketch.jpg" alt="메밀스케치" width="750" height="562" loading="lazy" decoding="async"></div><div class="bd"><b>메밀스케치</b><p>메밀밭·흥정천 뷰·메밀 디저트</p></div></div>
-      </div>
-    </div>
-    <p class="insta-src reveal">포토스팟·카페 정보 참고: <a href="https://korean.visitkorea.or.kr/" target="_blank" rel="noopener">대한민국 구석구석</a> · <a href="https://tripsoda.com/article/1072" target="_blank" rel="noopener">트립소다</a> · <a href="https://tour.pc.go.kr/" target="_blank" rel="noopener">평창군 공식 관광</a></p>
+    <p class="insta-src reveal">포토스팟 정보 참고: <a href="https://korean.visitkorea.or.kr/" target="_blank" rel="noopener">대한민국 구석구석</a> · <a href="https://tripsoda.com/article/1072" target="_blank" rel="noopener">트립소다</a> · <a href="https://tour.pc.go.kr/" target="_blank" rel="noopener">평창군 공식 관광</a> — 카페는 <a href="#cafe">봉평 카페</a> 섹션에 모았습니다.</p>
   </div>
 </section>
 
@@ -1087,7 +1060,7 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
       </div>
     </div>
 
-    <p class="cafe-foot reveal"><b>사진 찍기 좋은 카페</b>를 찾으신다면 <a href="#insta" style="color:var(--g5);font-weight:700;text-decoration:underline">평창 인스타 핫플</a>에 카페 6.55·7HUNDRED·마추픽추·카페마카·메밀스케치를 따로 모아두었습니다.</p>
+    <p class="cafe-foot reveal">카페 사진을 누르면 2장씩 크게 보실 수 있습니다. 사진 찍기 좋은 <b>포토스팟</b>은 <a href="#insta" style="color:var(--g5);font-weight:700;text-decoration:underline">평창 인스타 핫플</a>에 따로 모아두었습니다.</p>
     <p class="insta-src reveal">영업시간·휴무는 방문 전 확인해 주세요. 카페 정보는 변동될 수 있습니다.</p>
   </div>
 </section>
