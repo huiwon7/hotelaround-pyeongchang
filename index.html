@@ -342,12 +342,16 @@ body.lb-lock{overflow:hidden}
 /* ---- 평창의 맛 ---- */
 .eat-sec{background:var(--sand)}
 .eat-grid{margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
-.eat-card{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:22px 22px 20px;
+.eat-card .ph{aspect-ratio:4/3;overflow:hidden;background:var(--sand2)}
+.eat-card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.eat-card:hover .ph img{transform:scale(1.05)}
+.eat-card .bd{padding:22px 22px 20px;display:flex;flex-direction:column;flex:1}
+.eat-card{background:var(--white);border:1px solid var(--line);border-radius:16px;overflow:hidden;padding:0;
   display:flex;flex-direction:column;transition:transform .35s var(--ease),box-shadow .35s}
 .eat-card:hover{transform:translateY(-5px);box-shadow:var(--sh)}
 .eat-card .kind{display:inline-flex;align-self:flex-start;align-items:center;gap:6px;font-size:.72rem;font-weight:700;
   letter-spacing:.06em;color:var(--wood);background:var(--sand2);border-radius:999px;padding:5px 12px}
-.eat-card h3{font-family:var(--serif);font-size:1.42rem;color:var(--g9);margin:14px 0 4px;font-weight:600}
+.eat-card h3{font-family:var(--serif);font-size:1.42rem;color:var(--g9);margin:12px 0 4px;font-weight:600}
 .eat-card .sig{color:var(--g5);font-size:.9rem;font-weight:600}
 .eat-card .desc{color:var(--muted);font-size:.88rem;margin-top:10px;flex:1;line-height:1.6}
 .eat-card .meta{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);font-size:.8rem;color:var(--muted);display:grid;gap:4px}
@@ -932,43 +936,55 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
 
     <div class="eat-grid">
       <div class="eat-card reveal">
-        <span class="kind">산채정식</span>
-        <h3>흔들바위</h3>
-        <p class="sig">흔들바위산채정식 23,000원</p>
-        <p class="desc">호텔과 같은 태기로에 있습니다. 마을 주민들이 태기산에서 직접 뜯은 산나물에 더덕구이와 황태까지 올라가는 한 상. 평창에 와서 먹는 밥다운 밥입니다.</p>
-        <div class="meta">
-          <div>평창군 봉평면 태기로 1</div>
-          <div>☎ <a href="tel:0333346788">033-334-6788</a></div>
+        <div class="ph"><img src="vzi-images/eat/heundeulbawi.jpg" alt="흔들바위 산채정식 한 상" width="847" height="635" loading="lazy" decoding="async"></div>
+        <div class="bd">
+          <span class="kind">산채정식</span>
+          <h3>흔들바위</h3>
+          <p class="sig">흔들바위산채정식 23,000원</p>
+          <p class="desc">호텔과 같은 태기로에 있습니다. 마을 주민들이 태기산에서 직접 뜯은 산나물에 더덕구이와 황태까지 올라가는 한 상. 평창에 와서 먹는 밥다운 밥입니다.</p>
+          <div class="meta">
+            <div>평창군 봉평면 태기로 1</div>
+            <div>☎ <a href="tel:0333346788">033-334-6788</a></div>
+          </div>
         </div>
       </div>
 
       <div class="eat-card reveal">
-        <span class="kind">메밀</span>
-        <h3>봉평메밀 미가연</h3>
-        <p class="sig">메밀막국수 · 육회비빔국수 · 메밀전</p>
-        <p class="desc">100% 메밀로 뽑은 면. 한옥풍의 넓은 홀에 단체석과 가족석이 갖춰져 있어 일행이 많아도 편합니다.</p>
-        <div class="meta">
-          <div>평창군 봉평면 기풍로 108</div>
+        <div class="ph"><img src="vzi-images/eat/migayeon.jpg" alt="봉평메밀 미가연 육회비빔국수" width="716" height="537" loading="lazy" decoding="async"></div>
+        <div class="bd">
+          <span class="kind">메밀</span>
+          <h3>봉평메밀 미가연</h3>
+          <p class="sig">메밀막국수 · 육회비빔국수 · 메밀전</p>
+          <p class="desc">100% 메밀로 뽑은 면 위에 육회를 수북이 올린 비빔국수가 간판 메뉴. 한옥풍의 넓은 홀에 단체석과 가족석이 갖춰져 있어 일행이 많아도 편합니다.</p>
+          <div class="meta">
+            <div>평창군 봉평면 기풍로 108</div>
+          </div>
         </div>
       </div>
 
       <div class="eat-card reveal">
-        <span class="kind">메밀</span>
-        <h3>메밀꽃향기</h3>
-        <p class="sig">물·비빔메밀국수 · 메밀전병 · 감자떡</p>
-        <p class="desc">이효석문화마을 길목의 전통 한옥. 국수 한 그릇에도 반찬이 정갈하게 따라 나옵니다. 문학마을 산책과 묶어서 다녀오기 좋습니다.</p>
-        <div class="meta">
-          <div>평창군 봉평면 이효석길 180</div>
+        <div class="ph"><img src="vzi-images/eat/memilhyanggi.jpg" alt="메밀꽃향기 비빔메밀국수" width="316" height="237" loading="lazy" decoding="async"></div>
+        <div class="bd">
+          <span class="kind">메밀</span>
+          <h3>메밀꽃향기</h3>
+          <p class="sig">물·비빔메밀국수 · 메밀전병 · 감자떡</p>
+          <p class="desc">이효석문화마을 길목의 전통 한옥. 국수 한 그릇에도 반찬이 정갈하게 따라 나옵니다. 문학마을 산책과 묶어서 다녀오기 좋습니다.</p>
+          <div class="meta">
+            <div>평창군 봉평면 이효석길 180</div>
+          </div>
         </div>
       </div>
 
       <div class="eat-card reveal">
-        <span class="kind">메밀 · 반려견 동반</span>
-        <h3>풀내음</h3>
-        <p class="sig">비빔국수 · 메밀모듬(감자떡·부치기·전병·묵)</p>
-        <p class="desc">한옥을 고쳐 만든 토속적인 공간에 야외 테이블이 넓습니다. <b>반려견 동반이 가능해</b> 아이와 반려견이 함께인 가족에게 특히 편합니다.</p>
-        <div class="meta">
-          <div>평창군 봉평면 메밀꽃길 31</div>
+        <div class="ph"><img src="vzi-images/eat/pulnaeum.jpg" alt="풀내음 메밀모듬 한 접시" width="843" height="632" loading="lazy" decoding="async"></div>
+        <div class="bd">
+          <span class="kind">메밀 · 반려견 동반</span>
+          <h3>풀내음</h3>
+          <p class="sig">비빔국수 · 메밀모듬(감자떡·부치기·전병·묵)</p>
+          <p class="desc">메밀전병과 부치기, 감자떡을 한 접시에 담아내는 모듬이 대표. 한옥을 고쳐 만든 공간에 야외 테이블이 넓고, <b>반려견 동반이 가능해</b> 아이와 반려견이 함께인 가족에게 특히 편합니다.</p>
+          <div class="meta">
+            <div>평창군 봉평면 메밀꽃길 31</div>
+          </div>
         </div>
       </div>
     </div>
