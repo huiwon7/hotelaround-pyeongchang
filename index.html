@@ -431,12 +431,26 @@ body.lb-lock{overflow:hidden}
 .cafe-sec{background:var(--white)}
 .cafe-list{margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
 .cafe-item{position:relative;background:var(--sand);border:1px solid var(--line);border-radius:16px;
-  padding:26px 24px 22px;display:flex;flex-direction:column;transition:transform .35s var(--ease),box-shadow .35s}
+  overflow:hidden;display:flex;flex-direction:column;transition:transform .35s var(--ease),box-shadow .35s;
+  padding:0;text-align:left;width:100%;font-family:inherit}
 .cafe-item:hover{transform:translateY(-5px);box-shadow:var(--sh)}
-.cafe-item .rank{position:absolute;top:-13px;left:24px;width:34px;height:34px;border-radius:50%;
+.cafe-item[data-dir]{cursor:pointer}
+.cafe-item[data-dir]:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.cafe-item .ph{aspect-ratio:4/3;overflow:hidden;position:relative;background:var(--sand2)}
+.cafe-item .ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.cafe-item[data-dir]:hover .ph img{transform:scale(1.06)}
+.cafe-item .ph .cnt{position:absolute;top:11px;right:11px;background:rgba(37,48,31,.82);color:#fff;
+  font-size:.7rem;font-weight:700;padding:5px 10px;border-radius:999px;backdrop-filter:blur(3px)}
+/* 사진이 아직 없는 곳 — 깨져 보이지 않도록 의도된 자리표시 */
+.cafe-item .ph.none{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  background:linear-gradient(140deg,var(--sand2),#e3ddce)}
+.cafe-item .ph.none .ic{font-size:2.1rem;opacity:.5}
+.cafe-item .ph.none span{font-size:.74rem;color:var(--muted);font-weight:600}
+.cafe-item .bd{padding:22px 24px;display:flex;flex-direction:column;flex:1}
+.cafe-item .rank{position:absolute;top:12px;left:12px;width:32px;height:32px;border-radius:50%;
   background:var(--g9);color:var(--gold-sf);display:flex;align-items:center;justify-content:center;
-  font-family:var(--serif);font-size:1.12rem;font-weight:700;border:3px solid var(--white)}
-.cafe-item h3{font-family:var(--serif);font-size:1.36rem;color:var(--g9);font-weight:600;margin:6px 0 6px}
+  font-family:var(--serif);font-size:1.06rem;font-weight:700;z-index:2;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.cafe-item h3{font-family:var(--serif);font-size:1.36rem;color:var(--g9);font-weight:600;margin:0 0 6px}
 .cafe-item .menu{color:var(--g5);font-size:.88rem;font-weight:600}
 .cafe-item .desc{color:var(--muted);font-size:.87rem;margin-top:10px;flex:1;line-height:1.65}
 .cafe-item .meta{margin-top:16px;padding-top:13px;border-top:1px dashed var(--line);display:grid;gap:4px;font-size:.79rem;color:var(--muted)}
@@ -931,63 +945,78 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
     <p class="sect-lead reveal">메밀 아이스크림부터 감자빵까지 — 봉평에서 가장 많이 찾는 카페 다섯 곳입니다. 세 곳은 호텔과 같은 <b style="color:var(--g9)">태기로</b>에 있어 오가는 길에 들르기 좋습니다.</p>
 
     <div class="cafe-list">
-      <div class="cafe-item reveal">
+      <div class="cafe-item reveal" role="button" tabindex="0" data-dir="vzi-images/cafe-bakery" data-files="pineleaf-1.jpg,pineleaf-2.jpg" data-name="파인리프">
         <span class="rank">1</span>
-        <h3>파인리프</h3>
-        <p class="menu">카페 · 디저트</p>
-        <p class="desc">계곡을 옆에 두고 앉는 자리. 휘닉스파크 가까이에 있어 스키나 라운딩 전후로 들르기 좋습니다.</p>
-        <div class="meta">
-          <div class="dist">호텔과 같은 태기로 · 차로 5분</div>
-          <div>봉평면 태기로 396-6</div>
-          <div>☎ <a href="tel:050714271213">0507-1427-1213</a></div>
+        <div class="ph"><img src="vzi-images/cafe-bakery/pineleaf-1.jpg" alt="파인리프 — 유리 지붕 건물 외관" width="797" height="799" loading="lazy" decoding="async"><span class="cnt">📷 2</span></div>
+        <div class="bd">
+          <h3>파인리프</h3>
+          <p class="menu">카페 · 디저트</p>
+          <p class="desc">통유리 너머로 산이 들어오는 자리. 휘닉스파크 가까이에 있어 스키나 라운딩 전후로 들르기 좋습니다.</p>
+          <div class="meta">
+            <div class="dist">호텔과 같은 태기로 · 차로 5분</div>
+            <div>봉평면 태기로 396-6</div>
+            <div>☎ <a href="tel:050714271213">0507-1427-1213</a></div>
+          </div>
         </div>
       </div>
 
-      <div class="cafe-item reveal">
+      <div class="cafe-item reveal" role="button" tabindex="0" data-dir="vzi-images/cafe-bakery" data-files="trigo-2.jpg,trigo-1.jpg" data-name="트리고 평창본점">
         <span class="rank">2</span>
-        <h3>트리고 평창본점</h3>
-        <p class="menu">메밀 아이스크림 · 소금빵</p>
-        <p class="desc">봉평이니까 마셔야 하는 메밀. 담백하고 고소한 메밀 아이스크림이 대표 메뉴입니다. 이효석문화마을 산책과 묶기 좋습니다.</p>
-        <div class="meta">
-          <div class="dist">이효석문화마을 인근</div>
-          <div>봉평면 메밀꽃길 10-1</div>
-          <div>☎ <a href="tel:050713875758">0507-1387-5758</a></div>
+        <div class="ph"><img src="vzi-images/cafe-bakery/trigo-2.jpg" alt="트리고 평창본점 — 에이드와 프레첼 샌드위치" width="798" height="795" loading="lazy" decoding="async"><span class="cnt">📷 2</span></div>
+        <div class="bd">
+          <h3>트리고 평창본점</h3>
+          <p class="menu">메밀 아이스크림 · 소금빵</p>
+          <p class="desc">봉평이니까 메밀. 담백하고 고소한 메밀 아이스크림이 대표 메뉴입니다. 이효석문화마을 산책과 묶기 좋습니다.</p>
+          <div class="meta">
+            <div class="dist">이효석문화마을 인근</div>
+            <div>봉평면 메밀꽃길 10-1</div>
+            <div>☎ <a href="tel:050713875758">0507-1387-5758</a></div>
+          </div>
         </div>
       </div>
 
-      <div class="cafe-item reveal">
+      <div class="cafe-item reveal" role="button" tabindex="0" data-dir="vzi-images/cafe-bakery" data-files="sumbakery-1.jpg,sumbakery-2.jpg" data-name="숨쉬는제빵소">
         <span class="rank">3</span>
-        <h3>숨쉬는제빵소</h3>
-        <p class="menu">감자빵 · 베이커리</p>
-        <p class="desc">강원도에 왔으면 감자빵. 봉평전통시장 바로 옆이라 시장 구경하고 빵 사서 나오기 좋습니다.</p>
-        <div class="meta">
-          <div class="dist">봉평전통시장 인근</div>
-          <div>봉평면 기풍3길 29 B1</div>
-          <div>☎ <a href="tel:050714789297">0507-1478-9297</a></div>
+        <div class="ph"><img src="vzi-images/cafe-bakery/sumbakery-1.jpg" alt="숨쉬는제빵소 — 창밖 풍경과 갓 구운 빵" width="795" height="795" loading="lazy" decoding="async"><span class="cnt">📷 2</span></div>
+        <div class="bd">
+          <h3>숨쉬는제빵소</h3>
+          <p class="menu">감자빵 · 베이커리</p>
+          <p class="desc">강원도에 왔으면 감자빵. 봉평전통시장 바로 옆이라 시장 구경하고 빵 사서 나오기 좋습니다.</p>
+          <div class="meta">
+            <div class="dist">봉평전통시장 인근</div>
+            <div>봉평면 기풍3길 29 B1</div>
+            <div>☎ <a href="tel:050714789297">0507-1478-9297</a></div>
+          </div>
         </div>
       </div>
 
-      <div class="cafe-item reveal">
+      <div class="cafe-item reveal" role="button" tabindex="0" data-dir="vzi-images/cafe-bakery" data-files="corobay-2.jpg,corobay-1.jpg" data-name="꼬로베이">
         <span class="rank">4</span>
-        <h3>꼬로베이</h3>
-        <p class="menu">브런치 · 감자크림파스타</p>
-        <p class="desc">커피만으로 아쉬울 때. 감자크림파스타가 대표 메뉴인 브런치 카페라 늦은 아침을 해결하기 좋습니다.</p>
-        <div class="meta">
-          <div class="dist">호텔과 같은 태기로 · 차로 5분</div>
-          <div>봉평면 태기로 68</div>
-          <div>☎ <a href="tel:0333322649">033-332-2649</a></div>
+        <div class="ph"><img src="vzi-images/cafe-bakery/corobay-2.jpg" alt="꼬로베이 — 가지 파르미지아나" width="792" height="791" loading="lazy" decoding="async"><span class="cnt">📷 2</span></div>
+        <div class="bd">
+          <h3>꼬로베이</h3>
+          <p class="menu">브런치 · 감자크림파스타</p>
+          <p class="desc">커피만으로 아쉬울 때. 파스타와 샐러드까지 갖춘 브런치 카페라 늦은 아침을 해결하기 좋습니다.</p>
+          <div class="meta">
+            <div class="dist">호텔과 같은 태기로 · 차로 5분</div>
+            <div>봉평면 태기로 68</div>
+            <div>☎ <a href="tel:0333322649">033-332-2649</a></div>
+          </div>
         </div>
       </div>
 
       <div class="cafe-item reveal">
         <span class="rank">5</span>
-        <h3>싼타버거</h3>
-        <p class="menu">산타버거 · 숀화이트버거</p>
-        <p class="desc">아이들이 좋아하는 수제버거. 면온IC에서 1.6km라 들어오거나 나가는 길에 들르기 편하고, 주차장이 넓습니다.</p>
-        <div class="meta">
-          <div class="dist">호텔과 같은 태기로 · 차로 5분</div>
-          <div>봉평면 태기로 431</div>
-          <div>☎ <a href="tel:050713563329">0507-1356-3329</a></div>
+        <div class="ph none"><span class="ic">🍔</span><span>사진 준비 중</span></div>
+        <div class="bd">
+          <h3>싼타버거</h3>
+          <p class="menu">산타버거 · 숀화이트버거</p>
+          <p class="desc">아이들이 좋아하는 수제버거. 면온IC에서 1.6km라 들어오거나 나가는 길에 들르기 편하고, 주차장이 넓습니다.</p>
+          <div class="meta">
+            <div class="dist">호텔과 같은 태기로 · 차로 5분</div>
+            <div>봉평면 태기로 431</div>
+            <div>☎ <a href="tel:050713563329">0507-1356-3329</a></div>
+          </div>
         </div>
       </div>
     </div>
@@ -1647,7 +1676,8 @@ document.getElementById('rretry').addEventListener('click',send);
     if(opener)opener.focus();
   }
 
-  document.querySelectorAll('.room[data-dir]').forEach(b=>{
+  // 객실 카드와 카페 카드가 같은 라이트박스를 쓴다
+  document.querySelectorAll('.room[data-dir],.cafe-item[data-dir]').forEach(b=>{
     b.addEventListener('click',()=>open(b));
     b.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open(b);}});
   });
