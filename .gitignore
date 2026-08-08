@@ -15,6 +15,7 @@
 !/robots.txt
 !/sitemap.xml
 !/vzi-images/
+!/vzi-video/
 
 # 3) 명시적 재확인 — 아래는 어떤 경우에도 커밋 금지
 #    (2번에서 되살아나는 실수를 막기 위한 이중 안전장치)

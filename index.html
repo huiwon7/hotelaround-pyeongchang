@@ -245,6 +245,11 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{
 /* hero */
 .hero{position:relative;min-height:100svh;display:flex;align-items:center;color:#fff;overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:-2;background:url('vzi-images/hero/exterior-1.jpg') center/cover}
+/* 영상은 '있으면 좋은 것'이다. 첫 화면은 항상 이미지가 먼저 그려지고(LCP 보호),
+   조건이 맞을 때만 영상이 그 위로 서서히 겹쳐진다. */
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;
+  opacity:0;transition:opacity 1.4s var(--ease);pointer-events:none}
+.hero-video.ready{opacity:1}
 /* 세로 그라데이션만으로는 카피가 놓이는 중간 지점이 가장 옅어 글자가 사진에 묻힌다.
    가로 방향 스크림을 겹쳐 텍스트가 앉는 왼쪽을 확실히 눌러 준다. */
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;
@@ -852,6 +857,9 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
 <!-- HERO -->
 <section class="hero" id="top">
   <div class="hero-bg"></div>
+  <video class="hero-video" id="heroVid" muted loop playsinline preload="none"
+         poster="vzi-images/hero/exterior-1.jpg" aria-hidden="true" tabindex="-1"
+         data-src="vzi-video/hero-loop.mp4"></video>
   <div class="wrap hero-inner">
     <span class="kick">사계절 라이프스타일 리조트 · 평창 봉평</span>
     <h1>숨이 깊어지는 높이, <em>해발 700m</em><br>계절이 바뀔 때마다, <em>나를 회복하는 시간</em></h1>
@@ -1843,6 +1851,28 @@ async function send(){
 }
 rf.addEventListener('submit',e=>{e.preventDefault();send();});
 document.getElementById('rretry').addEventListener('click',send);
+// ---- 히어로 배경 영상 ----
+// 2MB짜리 파일이라 무조건 받게 하지 않는다. 좁은 화면·데이터 절약 모드·
+// 느린 회선·모션 축소 설정에서는 기존 이미지를 그대로 둔다.
+(function(){
+  const v=document.getElementById('heroVid');
+  if(!v||!v.dataset.src)return;
+  const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const narrow=innerWidth<820;
+  const c=navigator.connection||{};
+  const stingy=c.saveData===true||/(^|-)(2g|3g)$/.test(c.effectiveType||'');
+  if(reduceMotion||narrow||stingy)return;
+
+  v.addEventListener('canplay',()=>{
+    v.classList.add('ready');
+    const p=v.play();
+    if(p&&p.catch)p.catch(()=>v.classList.remove('ready')); // 자동재생이 막히면 이미지로 되돌린다
+  },{once:true});
+  v.addEventListener('error',()=>v.classList.remove('ready'),{once:true});
+  v.src=v.dataset.src;
+  v.load();
+})();
+
 // ---- 모바일 메뉴 ----
 (function(){
   const dr=document.getElementById('drawer'), btn=document.getElementById('menuBtn');
