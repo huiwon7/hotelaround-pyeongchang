@@ -35,8 +35,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preload" as="image" href="vzi-images/hero/exterior-1.jpg" fetchpriority="high">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<!-- 외부 폰트 CSS가 첫 화면 렌더링을 막지 않도록 비동기로 불러온다.
+     JS가 꺼진 환경에서는 noscript가 기존과 동일하게 동작한다. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" media="print" onload="this.media='all'">
+<noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+</noscript>
 
 <script type="application/ld+json">
 {
@@ -149,7 +155,9 @@ section{padding-block:clamp(60px,9vw,120px)}
 .brand b{font-family:var(--serif);font-size:1.3rem;letter-spacing:.2em;font-weight:700}
 .brand small{font-size:.66rem;letter-spacing:.16em;opacity:.85}
 .nav-links{display:flex;align-items:center;gap:20px}
-.nav-links a{color:#fff;font-size:.92rem;font-weight:600;transition:opacity .25s,color .4s}
+/* 탭 타깃을 세로로 넓혀 준다 (텍스트 높이만으로는 25px 남짓이라 누르기 어렵다) */
+.nav-links a{color:#fff;font-size:.92rem;font-weight:600;transition:opacity .25s,color .4s;
+  display:inline-flex;align-items:center;min-height:40px}
 .hdr.solid .nav-links a{color:var(--ink)}
 .nav-links a:not(.nav-cta):hover{opacity:.6}
 .nav-cta{padding:9px 20px;border:1.6px solid rgba(255,255,255,.7);border-radius:999px}
@@ -731,7 +739,7 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
         <div class="pt"><div class="ic">🚗</div><div class="tx"><b>서울에서 1시간 30분</b><p>가깝지만, 완전히 다른 하루.</p></div></div>
       </div>
     </div>
-    <div class="why-media reveal"><img src="vzi-images/attractions/heungjeong-valley.jpg" alt="평창 흥정계곡" width="1566" height="880" loading="lazy" decoding="async"></div>
+    <div class="why-media reveal"><img src="vzi-images/attractions/heungjeong-valley.jpg" alt="평창 흥정계곡" width="900" height="506" loading="lazy" decoding="async"></div>
   </div>
 </section>
 
@@ -742,13 +750,13 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
     <h2 class="sect-title reveal">평창에서의 하루</h2>
     <p class="sect-lead reveal">아침의 숲 산책에서 밤의 별빛까지. 흩어진 순간이 아니라, 이어지는 하루를 준비했습니다.</p>
     <div class="timeline">
-      <div class="moment reveal"><div class="ph"><img src="vzi-images/facilities/yoga.jpg" alt="아침 요가" width="1200" height="1600" loading="lazy" decoding="async"></div>
+      <div class="moment reveal"><div class="ph"><img src="vzi-images/facilities/yoga.jpg" alt="아침 요가" width="800" height="1067" loading="lazy" decoding="async"></div>
         <div class="bd"><div class="t">MORNING</div><h3>숲에서 깨는 아침</h3><p>아침 요가와 숲 산책, 그리고 평창 식재료로 차린 조식.</p></div></div>
       <div class="moment reveal"><div class="ph"><img src="vzi-images/attractions/blue-canyon.jpg" alt="계곡" width="760" height="460" loading="lazy" decoding="async"></div>
         <div class="bd"><div class="t">AFTERNOON</div><h3>계곡과 물놀이</h3><p>시원한 계곡, 잔디밭, 키즈 물놀이. 아이도 어른도 신나는 낮.</p></div></div>
       <div class="moment reveal"><div class="ph"><img src="vzi-images/facilities/bbq.jpg" alt="바비큐" width="1054" height="1492" loading="lazy" decoding="async"></div>
         <div class="bd"><div class="t">EVENING</div><h3>노을과 바비큐</h3><p>야외 바비큐, 버스킹, 그리고 붉게 물드는 하늘.</p></div></div>
-      <div class="moment reveal"><div class="ph"><img src="vzi-images/attractions/stargazing.jpg" alt="별보기" width="1200" height="800" loading="lazy" decoding="async"></div>
+      <div class="moment reveal"><div class="ph"><img src="vzi-images/attractions/stargazing.jpg" alt="별보기" width="800" height="533" loading="lazy" decoding="async"></div>
         <div class="bd"><div class="t">NIGHT</div><h3>불멍과 별보기</h3><p>모닥불 앞에서, 도심에선 볼 수 없던 별을 오래 바라보는 밤.</p></div></div>
     </div>
 
@@ -805,12 +813,12 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
         <p class="season-desc">도심이 펄펄 끓을 때, 평창은 선선합니다. 계곡에 발을 담그고, 한여름에도 12℃인 동굴 속을 걷고, 노을 아래 바비큐를 굽고, 쏟아지는 별 아래 하루를 마무리하는 — Cool Pyeongchang.</p>
         <div class="season-acts"><span>계곡 물놀이</span><span>광천선굴 탐험</span><span>야외 바비큐</span><span>동강 래프팅</span><span>루지</span><span>별보기</span><span>대관령음악제</span></div>
         <div class="season-spots">
-          <div class="season-spot"><img src="vzi-images/attractions/heungjeong-valley.jpg" alt="흥정계곡" width="1566" height="880" loading="lazy" decoding="async"><span class="cap">흥정계곡</span></div>
-          <div class="season-spot"><img src="vzi-images/attractions/gwangcheon-cave.jpg" alt="평창 광천선굴 동굴 내부" width="800" height="800" loading="lazy" decoding="async"><span class="cap">광천선굴</span></div>
-          <div class="season-spot"><img src="vzi-images/attractions/donggang-rafting.jpg" alt="동강 래프팅" width="1280" height="869" loading="lazy" decoding="async"><span class="cap">동강 래프팅</span></div>
-          <div class="season-spot"><img src="vzi-images/attractions/lugeland.jpg" alt="루지" width="760" height="460" loading="lazy" decoding="async"><span class="cap">루지 월드</span></div>
-          <div class="season-spot"><img src="vzi-images/festivals/heat-hunting.jpg" alt="여름 물놀이 축제" width="1600" height="1237" loading="lazy" decoding="async"><span class="cap">여름 물놀이</span></div>
-          <div class="season-spot"><img src="vzi-images/festivals/daegwallyeong-music.jpg" alt="대관령국제음악제" width="1600" height="1237" loading="lazy" decoding="async"><span class="cap">대관령음악제</span></div>
+          <div class="season-spot"><img src="vzi-images/attractions/heungjeong-valley.jpg" alt="흥정계곡" width="900" height="506" loading="lazy" decoding="async"><span class="cap">흥정계곡</span></div>
+          <div class="season-spot"><img src="vzi-images/attractions/gwangcheon-cave.jpg" alt="평창 광천선굴 동굴 내부" width="400" height="400" loading="lazy" decoding="async"><span class="cap">광천선굴</span></div>
+          <div class="season-spot"><img src="vzi-images/attractions/donggang-rafting.jpg" alt="동강 래프팅" width="400" height="272" loading="lazy" decoding="async"><span class="cap">동강 래프팅</span></div>
+          <div class="season-spot"><img src="vzi-images/attractions/lugeland.jpg" alt="루지" width="400" height="242" loading="lazy" decoding="async"><span class="cap">루지 월드</span></div>
+          <div class="season-spot"><img src="vzi-images/festivals/heat-hunting.jpg" alt="여름 물놀이 축제" width="400" height="309" loading="lazy" decoding="async"><span class="cap">여름 물놀이</span></div>
+          <div class="season-spot"><img src="vzi-images/festivals/daegwallyeong-music.jpg" alt="대관령국제음악제" width="400" height="309" loading="lazy" decoding="async"><span class="cap">대관령음악제</span></div>
         </div>
       </div>
     </div>
@@ -825,16 +833,16 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
         <div class="season-acts"><span>가을 골프</span><span>단풍 트레킹</span><span>전나무숲 산책</span><span>봉평 메밀꽃</span><span>억새 명소</span><span>로컬 미식</span><span>와인</span></div>
         <div class="season-spots">
           <a class="season-spot" href="#golf"><img src="vzi-images/golf/course-mountain.jpg" alt="가을 라운딩 — 휘닉스 컨트리클럽" width="803" height="602" loading="lazy" decoding="async"><span class="cap">가을 라운딩</span></a>
-          <div class="season-spot"><img src="vzi-images/attractions/bongpyeong-buckwheat.jpg" alt="봉평 메밀밭" width="1600" height="1200" loading="lazy" decoding="async"><span class="cap">봉평 메밀밭</span></div>
+          <div class="season-spot"><img src="vzi-images/attractions/bongpyeong-buckwheat.jpg" alt="봉평 메밀밭" width="800" height="600" loading="lazy" decoding="async"><span class="cap">봉평 메밀밭</span></div>
           <div class="season-spot"><img src="vzi-images/attractions/600majigi.jpg" alt="육백마지기" width="940" height="543" loading="lazy" decoding="async"><span class="cap">육백마지기</span></div>
-          <div class="season-spot"><img src="vzi-images/attractions/daegwallyeong-sheep.jpg" alt="대관령 양떼목장" width="1600" height="1200" loading="lazy" decoding="async"><span class="cap">대관령 양떼목장</span></div>
+          <div class="season-spot"><img src="vzi-images/attractions/daegwallyeong-sheep.jpg" alt="대관령 양떼목장" width="800" height="600" loading="lazy" decoding="async"><span class="cap">대관령 양떼목장</span></div>
         </div>
       </div>
     </div>
 
     <!-- 겨울 -->
     <div class="season-panel reveal" id="winter" style="--acc:#6d8296">
-      <div class="season-media"><img src="vzi-images/attractions/ski-resort.webp" alt="평창 스키 리조트" loading="lazy" decoding="async"></div>
+      <div class="season-media"><img src="vzi-images/attractions/ski-resort.webp" alt="평창 스키 리조트" width="1920" height="1080" loading="lazy" decoding="async"></div>
       <div class="season-body">
         <span class="season-badge"><span class="dot"></span>WINTER · 겨울</span>
         <h3 class="season-h">눈이 덮이면 시작되는 <em>화이트 시즌</em></h3>
@@ -842,8 +850,8 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
         <div class="season-acts"><span>스키·보드</span><span>눈썰매</span><span>온돌 가족여행</span><span>평창송어축제</span><span>겨울 먹거리</span></div>
         <!-- TODO: 평창송어축제 · 올림픽플라자 사진 확보 후 추가 (기존 파일은 손상되어 제거함) -->
         <div class="season-spots">
-          <div class="season-spot"><img src="vzi-images/attractions/ski-resort.webp" alt="평창 스키 슬로프" loading="lazy" decoding="async"><span class="cap">스키 슬로프</span></div>
-          <div class="season-spot"><img src="vzi-images/attractions/night-walk.jpg" alt="겨울 밤 산책" width="1024" height="553" loading="lazy" decoding="async"><span class="cap">겨울 밤 산책</span></div>
+          <div class="season-spot"><img src="vzi-images/attractions/ski-resort.webp" alt="평창 스키 슬로프" width="1920" height="1080" loading="lazy" decoding="async"><span class="cap">스키 슬로프</span></div>
+          <div class="season-spot"><img src="vzi-images/attractions/night-walk.jpg" alt="겨울 밤 산책" width="600" height="324" loading="lazy" decoding="async"><span class="cap">겨울 밤 산책</span></div>
         </div>
       </div>
     </div>
@@ -857,8 +865,8 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
         <p class="season-desc">겨우내 잠든 숲이 새순으로 깨어납니다. 아침 요가로 하루를 열고, 새싹 돋는 목장을 거닐며, 지친 몸과 마음을 회복하는 평창의 봄 — Wellness Spring.</p>
         <div class="season-acts"><span>숲속 요가·명상</span><span>봄꽃 산책</span><span>워케이션</span><span>기업 워크숍</span><span>회복형 체류</span></div>
         <div class="season-spots">
-          <div class="season-spot"><img src="vzi-images/attractions/daegwallyeong-sheep.jpg" alt="대관령 양떼목장" width="1600" height="1200" loading="lazy" decoding="async"><span class="cap">양떼목장 새봄</span></div>
-          <div class="season-spot"><img src="vzi-images/facilities/yoga.jpg" alt="숲속 요가" width="1200" height="1600" loading="lazy" decoding="async"><span class="cap">숲속 요가</span></div>
+          <div class="season-spot"><img src="vzi-images/attractions/daegwallyeong-sheep.jpg" alt="대관령 양떼목장" width="800" height="600" loading="lazy" decoding="async"><span class="cap">양떼목장 새봄</span></div>
+          <div class="season-spot"><img src="vzi-images/facilities/yoga.jpg" alt="숲속 요가" width="800" height="1067" loading="lazy" decoding="async"><span class="cap">숲속 요가</span></div>
           <div class="season-spot"><img src="vzi-images/attractions/woljeongsa-fir.jpg" alt="전나무숲 산책" width="1600" height="1200" loading="lazy" decoding="async"><span class="cap">전나무숲 산책</span></div>
         </div>
       </div>
@@ -903,10 +911,10 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
     <div class="masonry">
       <div class="spot reveal"><span class="badge">📷 포토스팟</span><img src="vzi-images/attractions/600majigi.jpg" alt="육백마지기" width="940" height="543" loading="lazy" decoding="async"><div class="ov"><b>육백마지기 (청옥산)</b><span class="hh">#하늘초원 #하얀풍차 #별멍 #차박성지</span></div></div>
       <div class="spot reveal"><span class="badge">📷 포토스팟</span><img src="vzi-images/attractions/woljeongsa-fir.jpg" alt="월정사 전나무숲길" width="1600" height="1200" loading="lazy" decoding="async"><div class="ov"><b>월정사 전나무숲길</b><span class="hh">#도깨비촬영지 #피톤치드 #숲멍</span></div></div>
-      <div class="spot reveal"><span class="badge">📷 포토스팟</span><img src="vzi-images/attractions/daegwallyeong-sheep.jpg" alt="대관령 양떼목장" width="1600" height="1200" loading="lazy" decoding="async"><div class="ov"><b>대관령 양떼목장</b><span class="hh">#양떼 #풍력발전기 #초원산책</span></div></div>
-      <div class="spot reveal"><span class="badge">📷 포토스팟</span><img src="vzi-images/attractions/bongpyeong-buckwheat.jpg" alt="봉평 메밀꽃밭" width="1600" height="1200" loading="lazy" decoding="async"><div class="ov"><b>봉평 메밀꽃밭·이효석문화마을</b><span class="hh">#메밀꽃 #효석문화제 #가을감성</span></div></div>
-      <div class="spot reveal"><span class="badge">📷 포토스팟</span><img src="vzi-images/attractions/stargazing.jpg" alt="평창의 별밤" width="1200" height="800" loading="lazy" decoding="async"><div class="ov"><b>평창의 별밤</b><span class="hh">#은하수 #별멍 #밤하늘 #불멍</span></div></div>
-      <div class="spot reveal"><span class="badge">📷 포토스팟</span><img src="vzi-images/attractions/heungjeong-valley.jpg" alt="흥정계곡 허브나라" width="1566" height="880" loading="lazy" decoding="async"><div class="ov"><b>흥정계곡·허브나라농원</b><span class="hh">#라벤더 #꽃정원 #계곡뷰</span></div></div>
+      <div class="spot reveal"><span class="badge">📷 포토스팟</span><img src="vzi-images/attractions/daegwallyeong-sheep.jpg" alt="대관령 양떼목장" width="800" height="600" loading="lazy" decoding="async"><div class="ov"><b>대관령 양떼목장</b><span class="hh">#양떼 #풍력발전기 #초원산책</span></div></div>
+      <div class="spot reveal"><span class="badge">📷 포토스팟</span><img src="vzi-images/attractions/bongpyeong-buckwheat.jpg" alt="봉평 메밀꽃밭" width="800" height="600" loading="lazy" decoding="async"><div class="ov"><b>봉평 메밀꽃밭·이효석문화마을</b><span class="hh">#메밀꽃 #효석문화제 #가을감성</span></div></div>
+      <div class="spot reveal"><span class="badge">📷 포토스팟</span><img src="vzi-images/attractions/stargazing.jpg" alt="평창의 별밤" width="800" height="533" loading="lazy" decoding="async"><div class="ov"><b>평창의 별밤</b><span class="hh">#은하수 #별멍 #밤하늘 #불멍</span></div></div>
+      <div class="spot reveal"><span class="badge">📷 포토스팟</span><img src="vzi-images/attractions/heungjeong-valley.jpg" alt="흥정계곡 허브나라" width="900" height="506" loading="lazy" decoding="async"><div class="ov"><b>흥정계곡·허브나라농원</b><span class="hh">#라벤더 #꽃정원 #계곡뷰</span></div></div>
       <div class="spot reveal"><span class="badge">📷 포토스팟</span><img src="vzi-images/attractions/taegisan-birobong.jpg" alt="태기산" width="1600" height="1200" loading="lazy" decoding="async"><div class="ov"><b>태기산 억새·풍력</b><span class="hh">#억새 #능선 #일출맛집</span></div></div>
     </div>
 
@@ -1088,7 +1096,7 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
         <div class="ph"><img src="vzi-images/rooms/terrace-suite/1.jpg" alt="테라스 스위트" width="1280" height="800" loading="lazy" decoding="async"><span class="cnt">📷 5</span></div>
         <div class="bd"><h3>테라스 스위트</h3><p>별동 테라스 · 자연을 가까이</p></div></div>
       <div class="room reveal" role="button" tabindex="0" data-dir="vzi-images/rooms/superior-family-twin" data-files="2.webp,3.webp,5.webp,6.webp,9.webp" data-name="슈페리어 패밀리 트윈">
-        <div class="ph"><img src="vzi-images/rooms/superior-family-twin/2.webp" alt="슈페리어 패밀리 트윈" loading="lazy" decoding="async"><span class="cnt">📷 5</span></div>
+        <div class="ph"><img src="vzi-images/rooms/superior-family-twin/2.webp" alt="슈페리어 패밀리 트윈" width="1024" height="576" loading="lazy" decoding="async"><span class="cnt">📷 5</span></div>
         <div class="bd"><h3>슈페리어 패밀리 트윈</h3><p>가족 친화형 · 편안한 트윈 구성</p></div></div>
       <div class="room reveal" role="button" tabindex="0" data-dir="vzi-images/rooms/villa-suite" data-files="1.jpg,2.jpg,3.jpg,4.jpg,5.jpg" data-name="빌라 스위트">
         <div class="ph"><img src="vzi-images/rooms/villa-suite/1.jpg" alt="빌라 스위트" width="1280" height="800" loading="lazy" decoding="async"><span class="cnt">📷 5</span></div>
@@ -1112,12 +1120,12 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
     <h2 class="sect-title reveal">숙박, 그 이상의 하루</h2>
     <p class="sect-lead reveal">객실 밖에도 하루가 있습니다. 로비의 라운지부터 야외 바비큐, 웰니스와 다이닝까지.</p>
     <div class="fac">
-      <div class="f reveal"><img src="vzi-images/facilities/lobby.jpg" alt="로비" width="1200" height="675" loading="lazy" decoding="async"><div class="cap">로비 · 라운지<small>도착의 순간부터 쉼</small></div></div>
+      <div class="f reveal"><img src="vzi-images/facilities/lobby.jpg" alt="로비" width="800" height="450" loading="lazy" decoding="async"><div class="cap">로비 · 라운지<small>도착의 순간부터 쉼</small></div></div>
       <div class="f reveal"><img src="vzi-images/facilities/bbq.jpg" alt="바비큐" width="1054" height="1492" loading="lazy" decoding="async"><div class="cap">야외 바비큐<small>노을 아래 가족 식사</small></div></div>
       <div class="f reveal"><img src="vzi-images/facilities/breakfast.jpg" alt="창가 자리에 차려진 호텔어라운드 평창의 조식" width="1053" height="702" loading="lazy" decoding="async"><div class="cap">평창 아침시장 조식<small>지역 식재료로 차린 아침</small></div></div>
-      <div class="f reveal"><img src="vzi-images/facilities/yoga.jpg" alt="웰니스" width="1200" height="1600" loading="lazy" decoding="async"><div class="cap">웰니스 프로그램<small>요가 · 명상 · 산책</small></div></div>
+      <div class="f reveal"><img src="vzi-images/facilities/yoga.jpg" alt="웰니스" width="800" height="1067" loading="lazy" decoding="async"><div class="cap">웰니스 프로그램<small>요가 · 명상 · 산책</small></div></div>
       <div class="f reveal"><img src="vzi-images/facilities/kids-pool.jpg" alt="키즈" width="1086" height="1448" loading="lazy" decoding="async"><div class="cap">키즈 · 물놀이<small>아이들의 신나는 시간</small></div></div>
-      <div class="f reveal"><img src="vzi-images/facilities/fitness.jpg" alt="피트니스" width="1600" height="900" loading="lazy" decoding="async"><div class="cap">피트니스<small>여행 중에도 나의 루틴</small></div></div>
+      <div class="f reveal"><img src="vzi-images/facilities/fitness.jpg" alt="피트니스" width="800" height="450" loading="lazy" decoding="async"><div class="cap">피트니스<small>여행 중에도 나의 루틴</small></div></div>
 
       <div class="fac-shuttle reveal" id="shuttle">
         <div class="ph"><img src="vzi-images/facilities/shuttle.jpg" alt="호텔어라운드 평창 셔틀버스" width="1200" height="800" loading="lazy" decoding="async"></div>
