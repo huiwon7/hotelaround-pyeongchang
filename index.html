@@ -119,7 +119,11 @@
   --sand:#f6f3ec; --sand2:#ece6d8; --wood:#b08b5e; --gold:#bd9440; --gold-sf:#d9bd7a;
   --ink:#20241c; --muted:#6c7066; --white:#fff; --line:#e3ddd0; --kakao:#fee500;
   --maxw:1120px; --gut:clamp(20px,5vw,72px);
-  --serif:"Cormorant Garamond","Pretendard",serif;
+  /* Cormorant Garamond에는 한글 글리프가 없다. 한글 제목에 쓰면 한글만 Pretendard로
+     폴백되어 '해발 700m'처럼 한 줄 안에서 서체가 갈라진다.
+     → 세리프는 영문 전용 자리(워드마크·DAY 1·순번)에만, 한글 제목은 --display로 통일. */
+  --serif:"Cormorant Garamond",serif;
+  --display:"Pretendard",system-ui,sans-serif;
   --sans:"Pretendard",system-ui,-apple-system,sans-serif;
   --ease:cubic-bezier(.22,1,.36,1);
   --sh:0 24px 60px -30px rgba(37,48,31,.5);
@@ -132,7 +136,7 @@ a{color:inherit;text-decoration:none}
 ul{list-style:none}
 .wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gut)}
 .eyebrow{font-size:.76rem;letter-spacing:.26em;text-transform:uppercase;color:var(--wood);font-weight:700;margin-bottom:14px}
-.sect-title{font-family:var(--serif);font-size:clamp(1.9rem,4.4vw,3rem);line-height:1.14;color:var(--g9);font-weight:600}
+.sect-title{font-family:var(--display);font-size:clamp(1.9rem,4.4vw,3rem);line-height:1.2;color:var(--g9);font-weight:800;letter-spacing:-.025em;word-break:keep-all}
 .sect-lead{margin-top:16px;color:var(--muted);font-size:1.05rem;max-width:640px}
 section{padding-block:clamp(60px,9vw,120px)}
 
@@ -142,6 +146,36 @@ section{padding-block:clamp(60px,9vw,120px)}
 .btn-primary:hover{filter:brightness(1.07);transform:translateY(-2px)}
 .btn-ghost{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.6);backdrop-filter:blur(4px)}
 .btn-ghost:hover{background:#fff;color:var(--g9)}
+/* 밝은 배경용 외곽선 버튼 — 없어서 인라인 style로 땜질하던 것을 정식 변형으로 */
+.btn-outline{background:transparent;color:var(--g9);border-color:var(--g9)}
+.btn-outline:hover{background:var(--g9);color:#fff;transform:translateY(-2px)}
+/* 본문 안 강조 링크 — 같은 인라인 스타일이 반복되던 것을 클래스로 */
+.tlink{color:var(--g5);font-weight:700;text-decoration:underline;text-underline-offset:3px;
+  text-decoration-thickness:1.5px;transition:color .2s}
+.tlink:hover{color:var(--g9)}
+.on-dark .tlink,.tlink.on-dark{color:var(--gold-sf)}
+.tlink.on-dark:hover{color:#fff}
+
+/* 본문 강조 — 인라인 color가 반복되던 것을 유틸리티로 */
+.hl{color:var(--g9);font-weight:700}
+.hl-gold{color:var(--gold-sf);font-weight:700}
+
+/* 16개 섹션짜리 긴 페이지라 지금 어디쯤인지 알려 준다 */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:160;
+  background:linear-gradient(90deg,var(--wood),var(--gold),var(--gold-sf));
+  transition:width .1s linear;pointer-events:none}
+
+/* 모션 축소를 설정한 사용자에게는 애니메이션을 끈다 */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .reveal{opacity:1!important;transform:none!important}
+}
+
+/* 포커스 표시를 전역 기본값으로 (개별 요소에만 있던 것을 일관되게) */
+a:focus-visible,button:focus-visible,summary:focus-visible,
+input:focus-visible,select:focus-visible,textarea:focus-visible{
+  outline:3px solid var(--gold);outline-offset:2px;border-radius:4px}
 .btn-dark{background:var(--g9);color:#fff}
 .btn-dark:hover{background:var(--g7);transform:translateY(-2px)}
 .btn-lg{padding:16px 34px;font-size:1.02rem}
@@ -170,17 +204,60 @@ section{padding-block:clamp(60px,9vw,120px)}
 @media(max-width:960px){.nav-links{gap:13px}.nav-links a[href="#eat"],.nav-links a[href="#seasons"]{display:none}}
 @media(max-width:820px){.nav-links a:not(.nav-cta){display:none}}
 
+/* ---- 모바일 메뉴 ----
+   섹션이 16개인데 좁은 화면에서는 링크가 전부 숨겨져 스크롤 외에는 이동 수단이 없었다. */
+.menu-btn{display:none;width:42px;height:42px;border:1.4px solid rgba(255,255,255,.5);border-radius:12px;
+  background:rgba(255,255,255,.08);cursor:pointer;padding:0;align-items:center;justify-content:center;
+  flex-direction:column;gap:4px;transition:.25s var(--ease)}
+.hdr.solid .menu-btn{border-color:var(--line);background:var(--sand)}
+.menu-btn i{display:block;width:17px;height:1.8px;background:#fff;border-radius:2px;transition:.3s var(--ease)}
+.hdr.solid .menu-btn i{background:var(--g9)}
+.menu-btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+@media(max-width:820px){.menu-btn{display:flex}}
+
+.drawer{position:fixed;inset:0;z-index:200;display:none}
+.drawer.open{display:block}
+.drawer-bg{position:absolute;inset:0;background:rgba(13,20,11,.55);opacity:0;transition:opacity .3s var(--ease);backdrop-filter:blur(3px)}
+.drawer.in .drawer-bg{opacity:1}
+.drawer-panel{position:absolute;top:0;right:0;bottom:0;width:min(84vw,330px);background:var(--g9);
+  transform:translateX(100%);transition:transform .34s var(--ease);display:flex;flex-direction:column;
+  padding:18px 20px calc(20px + env(safe-area-inset-bottom));overflow-y:auto}
+.drawer.in .drawer-panel{transform:none}
+.drawer-top{display:flex;align-items:center;justify-content:space-between;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.12)}
+.drawer-top b{font-family:var(--serif);color:#fff;font-size:1.15rem;letter-spacing:.18em}
+.drawer-x{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.28);background:none;
+  color:#fff;font-size:1.2rem;line-height:1;cursor:pointer}
+.drawer-x:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.drawer nav{display:grid;gap:2px;margin-top:10px}
+.drawer nav a{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  color:#e8e4d8;font-size:1rem;font-weight:600;padding:13px 4px;border-bottom:1px solid rgba(255,255,255,.07)}
+.drawer nav a span{font-family:var(--serif);font-size:.72rem;letter-spacing:.14em;color:var(--g3)}
+.drawer nav a:active{color:var(--gold-sf)}
+.drawer-cta{margin-top:18px;display:grid;gap:9px}
+.drawer-cta .btn{width:100%}
+.drawer-tel{text-align:center;color:var(--g3);font-size:.82rem;margin-top:14px}
+.drawer-tel b{display:block;color:var(--gold-sf);font-size:1.02rem;margin-top:3px}
+
 /* hero */
 .hero{position:relative;min-height:100svh;display:flex;align-items:center;color:#fff;overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:-2;background:url('vzi-images/hero/exterior-1.jpg') center/cover}
+/* 세로 그라데이션만으로는 카피가 놓이는 중간 지점이 가장 옅어 글자가 사진에 묻힌다.
+   가로 방향 스크림을 겹쳐 텍스트가 앉는 왼쪽을 확실히 눌러 준다. */
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;
-  background:linear-gradient(180deg,rgba(37,48,31,.55),rgba(37,48,31,.4) 45%,rgba(37,48,31,.85))}
+  background:
+    linear-gradient(95deg,rgba(13,20,11,.78) 0%,rgba(13,20,11,.62) 34%,rgba(13,20,11,.12) 68%,rgba(13,20,11,0) 100%),
+    linear-gradient(180deg,rgba(30,40,25,.5),rgba(30,40,25,.28) 42%,rgba(24,32,20,.88))}
+@media(max-width:820px){
+  .hero::after{background:linear-gradient(180deg,rgba(13,20,11,.6),rgba(13,20,11,.5) 40%,rgba(20,28,17,.92))}
+}
 /* .hero가 display:flex 라 자식의 min-width:auto 때문에 좁은 화면에서 줄바꿈 대신 넘친다 */
 .hero-inner{padding-top:90px;max-width:960px;min-width:0;width:100%}
-.hero .kick{display:inline-flex;align-items:center;gap:9px;font-size:.8rem;letter-spacing:.26em;color:var(--gold-sf);font-weight:700;margin-bottom:22px}
+/* 골드는 밝은 하늘·건물 위에서 대비가 무너진다. 더 밝은 톤 + 그림자로 확보 */
+.hero .kick{display:inline-flex;align-items:center;gap:9px;font-size:.8rem;letter-spacing:.24em;
+  color:#f3e7c8;font-weight:700;margin-bottom:22px;text-shadow:0 1px 10px rgba(0,0,0,.55)}
 .hero .kick::before{content:"";width:34px;height:1.5px;background:var(--gold)}
 /* 두 줄 카피가 길어 최대 크기를 낮춰야 '시간'이 다음 줄로 떨어지지 않는다 */
-.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.72rem,4.4vw,2.95rem);line-height:1.18;letter-spacing:.01em;word-break:keep-all}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(1.72rem,4.4vw,2.95rem);line-height:1.24;letter-spacing:-.025em;word-break:keep-all}
 .hero h1 em{font-style:normal;color:var(--gold-sf)}
 .hero .sub{margin-top:24px;font-size:clamp(1.02rem,2.4vw,1.22rem);max-width:560px;color:#ece6d8}
 .hero-cta{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}
@@ -190,7 +267,7 @@ section{padding-block:clamp(60px,9vw,120px)}
 /* promise band */
 .promise{background:var(--g9);color:#fff;text-align:center}
 .promise .wrap{padding-block:clamp(56px,8vw,92px)}
-.promise .big{font-family:var(--serif);font-size:clamp(1.7rem,4.2vw,2.8rem);line-height:1.35;font-weight:600}
+.promise .big{font-family:var(--display);font-size:clamp(1.7rem,4.2vw,2.8rem);line-height:1.38;font-weight:800;letter-spacing:-.022em;word-break:keep-all}
 .promise .big em{font-style:normal;color:var(--gold-sf)}
 .promise p{margin-top:20px;color:var(--g3);font-size:1.05rem;max-width:660px;margin-inline:auto}
 .buys{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:30px}
@@ -238,7 +315,7 @@ section{padding-block:clamp(60px,9vw,120px)}
 .season-media:hover img{transform:scale(1.05)}
 .season-badge{display:inline-flex;align-items:center;gap:9px;font-size:.82rem;letter-spacing:.14em;font-weight:700;color:var(--acc)}
 .season-badge .dot{width:9px;height:9px;border-radius:50%;background:var(--acc)}
-.season-h{font-family:var(--serif);font-size:clamp(1.5rem,3.2vw,1.85rem);color:var(--g9);font-weight:600;margin:12px 0 0;line-height:1.14;word-break:keep-all}
+.season-h{font-family:var(--display);font-size:clamp(1.5rem,3.2vw,1.85rem);color:var(--g9);font-weight:800;margin:12px 0 0;line-height:1.24;letter-spacing:-.022em;word-break:keep-all}
 .season-h em{font-style:normal;color:var(--acc)}
 .season-desc{color:var(--muted);font-size:1.02rem;margin-top:12px}
 .season-acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
@@ -347,7 +424,7 @@ body.lb-lock{overflow:hidden}
 .eat-card:hover{transform:translateY(-5px);box-shadow:var(--sh)}
 .eat-card .kind{display:inline-flex;align-self:flex-start;align-items:center;gap:6px;font-size:.72rem;font-weight:700;
   letter-spacing:.06em;color:var(--wood);background:var(--sand2);border-radius:999px;padding:5px 12px}
-.eat-card h3{font-family:var(--serif);font-size:1.42rem;color:var(--g9);margin:12px 0 4px;font-weight:600}
+.eat-card h3{font-family:var(--display);font-size:1.42rem;color:var(--g9);margin:12px 0 4px;font-weight:600}
 .eat-card .sig{color:var(--g5);font-size:.9rem;font-weight:600}
 .eat-card .desc{color:var(--muted);font-size:.88rem;margin-top:10px;flex:1;line-height:1.6}
 .eat-card .meta{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);font-size:.8rem;color:var(--muted);display:grid;gap:4px}
@@ -375,7 +452,7 @@ body.lb-lock{overflow:hidden}
 .pkg-hero>*{position:relative;z-index:1}
 .pkg-badge{display:inline-flex;align-items:center;gap:8px;font-size:.74rem;font-weight:700;letter-spacing:.14em;
   color:var(--gold-sf);border:1px solid rgba(217,189,122,.45);border-radius:999px;padding:7px 15px}
-.pkg-name{font-family:var(--serif);font-size:clamp(1.9rem,4.4vw,3rem);line-height:1.16;font-weight:600;margin-top:18px}
+.pkg-name{font-family:var(--display);font-size:clamp(1.9rem,4.4vw,3rem);line-height:1.16;font-weight:600;margin-top:18px}
 .pkg-name em{font-style:normal;color:var(--gold-sf)}
 .pkg-sub{margin-top:10px;font-size:.9rem;letter-spacing:.16em;color:var(--g3);font-weight:700}
 .pkg-msg{margin-top:22px;font-size:clamp(1rem,2.1vw,1.14rem);line-height:1.8;color:#ece6d8;max-width:640px;word-break:keep-all}
@@ -470,7 +547,7 @@ body.lb-lock{overflow:hidden}
 .cafe-item .rank{position:absolute;top:12px;left:12px;width:32px;height:32px;border-radius:50%;
   background:var(--g9);color:var(--gold-sf);display:flex;align-items:center;justify-content:center;
   font-family:var(--serif);font-size:1.06rem;font-weight:700;z-index:2;box-shadow:0 4px 12px rgba(0,0,0,.3)}
-.cafe-item h3{font-family:var(--serif);font-size:1.36rem;color:var(--g9);font-weight:600;margin:0 0 6px}
+.cafe-item h3{font-family:var(--display);font-size:1.36rem;color:var(--g9);font-weight:600;margin:0 0 6px}
 .cafe-item .menu{color:var(--g5);font-size:.88rem;font-weight:600}
 .cafe-item .desc{color:var(--muted);font-size:.87rem;margin-top:10px;flex:1;line-height:1.65}
 .cafe-item .meta{margin-top:16px;padding-top:13px;border-top:1px dashed var(--line);display:grid;gap:4px;font-size:.79rem;color:var(--muted)}
@@ -517,14 +594,14 @@ body.lb-lock{overflow:hidden}
 .golf-hero img{width:100%;height:100%;object-fit:cover}
 .golf-hero .ov{position:absolute;inset:auto 0 0 0;padding:clamp(20px,4vw,38px);color:#fff;
   background:linear-gradient(transparent,rgba(13,23,18,.35) 40%,rgba(13,23,18,.92))}
-.golf-hero .ov b{font-family:var(--serif);display:block;font-size:clamp(1.5rem,3.4vw,2.4rem);font-weight:600;line-height:1.2}
+.golf-hero .ov b{font-family:var(--display);display:block;font-size:clamp(1.5rem,3.4vw,2.4rem);font-weight:600;line-height:1.2}
 .golf-hero .ov b em{font-style:normal;color:var(--gold-sf)}
 .golf-hero .ov p{margin-top:8px;font-size:.94rem;color:#e2ddcd;max-width:560px;word-break:keep-all}
 
 .golf-specs{margin-top:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 @media(max-width:700px){.golf-specs{grid-template-columns:1fr 1fr}}
 .golf-specs div{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:18px;text-align:center}
-.golf-specs b{display:block;font-family:var(--serif);font-size:1.6rem;color:var(--g9);font-weight:700;line-height:1.1}
+.golf-specs b{display:block;font-family:var(--display);font-size:1.6rem;color:var(--g9);font-weight:700;line-height:1.1}
 .golf-specs span{display:block;margin-top:6px;font-size:.78rem;color:var(--muted);font-weight:600;letter-spacing:.04em}
 
 .golf-courses{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -614,7 +691,7 @@ body.lb-lock{overflow:hidden}
 .today .chip-list span{background:var(--g7);color:#eee9dd;border-radius:999px;padding:8px 15px;font-size:.86rem}
 .today-card{background:var(--g7);border-radius:18px;padding:28px;box-shadow:var(--sh)}
 .today-card .kk{font-size:.8rem;letter-spacing:.14em;color:var(--gold-sf);font-weight:700}
-.today-card h3{font-family:var(--serif);font-size:1.5rem;margin:8px 0 14px}
+.today-card h3{font-family:var(--display);font-size:1.5rem;margin:8px 0 14px}
 .today-card p{color:var(--g3);font-size:.95rem}
 
 /* reserve CTA */
@@ -680,6 +757,7 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
 <body>
 
 <!-- HEADER -->
+<div class="progress" id="prog" aria-hidden="true"></div>
 <header class="hdr" id="hdr">
   <div class="wrap nav">
     <a href="#top" class="brand"><b>AROUND</b><small>HOTEL · PYEONGCHANG</small></a>
@@ -697,8 +775,39 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
       <a href="#faq">FAQ</a>
       <a href="#reserve" class="nav-cta">예약·문의</a>
     </nav>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="drawer">
+      <i></i><i></i><i></i>
+    </button>
   </div>
 </header>
+
+<!-- 모바일 메뉴 -->
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="사이트 메뉴">
+  <div class="drawer-bg" data-close></div>
+  <div class="drawer-panel">
+    <div class="drawer-top">
+      <b>AROUND</b>
+      <button class="drawer-x" type="button" aria-label="메뉴 닫기" data-close>✕</button>
+    </div>
+    <nav>
+      <a href="#day">평창에서의 하루<span>A DAY</span></a>
+      <a href="#seasons">사계절<span>SEASONS</span></a>
+      <a href="#insta">인스타 핫플<span>PHOTO</span></a>
+      <a href="#eat">맛집<span>LOCAL TABLE</span></a>
+      <a href="#cafe">카페<span>CAFE</span></a>
+      <a href="#rooms">객실<span>ROOMS</span></a>
+      <a href="#facilities">시설 · 셔틀<span>FACILITIES</span></a>
+      <a href="#package">별빛숲 패키지<span>PACKAGE</span></a>
+      <a href="#golf">골프<span>GOLF</span></a>
+      <a href="#location">오시는 길<span>LOCATION</span></a>
+      <a href="#faq">자주 묻는 질문<span>FAQ</span></a>
+    </nav>
+    <div class="drawer-cta">
+      <a href="#reserve" class="btn btn-primary">예약 · 문의하기</a>
+    </div>
+    <p class="drawer-tel">전화 문의<b>033-832-8088</b></p>
+  </div>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="top">
@@ -746,7 +855,7 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
 <!-- DAY JOURNEY -->
 <section class="day" id="day">
   <div class="wrap">
-    <p class="eyebrow reveal" style="color:var(--gold-sf)">A Day in Pyeongchang</p>
+    <p class="eyebrow reveal" class="hl-gold">A Day in Pyeongchang</p>
     <h2 class="sect-title reveal">평창에서의 하루</h2>
     <p class="sect-lead reveal">아침의 숲 산책에서 밤의 별빛까지. 흩어진 순간이 아니라, 이어지는 하루를 준비했습니다.</p>
     <div class="timeline">
@@ -788,7 +897,7 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
           </div>
         </div>
 
-        <p class="note">※ 휘닉스 평창 쪽 숲길이며 호텔이 운영하는 시설은 아닙니다. 사진을 누르면 <b style="color:var(--gold-sf)">코스 안내도</b>를 크게 보실 수 있습니다. 겨울철에는 눈·결빙으로 통행이 제한될 수 있으니 프런트에 확인해 주세요.</p>
+        <p class="note">※ 휘닉스 평창 쪽 숲길이며 호텔이 운영하는 시설은 아닙니다. 사진을 누르면 <b class="hl-gold">코스 안내도</b>를 크게 보실 수 있습니다. 겨울철에는 눈·결빙으로 통행이 제한될 수 있으니 프런트에 확인해 주세요.</p>
       </div>
     </div>
   </div>
@@ -877,7 +986,7 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
 <!-- EXPLORE THEMES (평창군 공식 관광 참조) -->
 <section class="themes-sec" id="explore">
   <div class="wrap">
-    <p class="eyebrow reveal" style="color:var(--gold-sf)">Explore Pyeongchang</p>
+    <p class="eyebrow reveal" class="hl-gold">Explore Pyeongchang</p>
     <h2 class="sect-title reveal">평창, 이렇게 둘러보세요</h2>
     <p class="sect-lead reveal">평창군이 큐레이션한 대표 여행 테마입니다. 오대산의 사찰과 숲, 푸른 초원, 걷기 좋은 명산 둘레길, 사계절 축제와 로컬푸드까지 — 호텔에서 시작하는 평창 여행.</p>
     <div class="theme-grid">
@@ -984,7 +1093,7 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
       </div>
     </div>
 
-    <p class="eat-note reveal"><b>이것도 평창의 맛</b> — 겨울엔 <b>송어회</b>, 대관령 쪽으로 나가면 <b>한우</b>, 아침으로는 <b>황태해장국</b>이 유명합니다. 그날 어디가 문을 여는지는 <a href="#reserve" style="color:var(--g5);font-weight:700;text-decoration:underline">체크인 전날 카카오톡</a>으로 안내해 드립니다.</p>
+    <p class="eat-note reveal"><b>이것도 평창의 맛</b> — 겨울엔 <b>송어회</b>, 대관령 쪽으로 나가면 <b>한우</b>, 아침으로는 <b>황태해장국</b>이 유명합니다. 그날 어디가 문을 여는지는 <a href="#reserve" class="tlink">체크인 전날 카카오톡</a>으로 안내해 드립니다.</p>
     <p class="insta-src reveal">맛집 정보 참고: <a href="https://korean.visitkorea.or.kr/" target="_blank" rel="noopener">대한민국 구석구석</a> · <a href="https://www.diningcode.com/" target="_blank" rel="noopener">다이닝코드</a> — 영업시간·휴무는 방문 전 확인해 주세요.</p>
   </div>
 </section>
@@ -994,7 +1103,7 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
   <div class="wrap">
     <p class="eyebrow reveal">Cafe</p>
     <h2 class="sect-title reveal">봉평 카페, 이 다섯 곳</h2>
-    <p class="sect-lead reveal">메밀 아이스크림부터 감자빵까지 — 봉평에서 가장 많이 찾는 카페 다섯 곳입니다. 세 곳은 호텔과 같은 <b style="color:var(--g9)">태기로</b>에 있어 오가는 길에 들르기 좋습니다.</p>
+    <p class="sect-lead reveal">메밀 아이스크림부터 감자빵까지 — 봉평에서 가장 많이 찾는 카페 다섯 곳입니다. 세 곳은 호텔과 같은 <b class="hl">태기로</b>에 있어 오가는 길에 들르기 좋습니다.</p>
 
     <div class="cafe-list">
       <div class="cafe-item reveal" role="button" tabindex="0" data-dir="vzi-images/cafe-bakery" data-files="pineleaf-1.jpg,pineleaf-2.jpg" data-name="파인리프">
@@ -1073,7 +1182,7 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
       </div>
     </div>
 
-    <p class="cafe-foot reveal">카페 사진을 누르면 2장씩 크게 보실 수 있습니다. 사진 찍기 좋은 <b>포토스팟</b>은 <a href="#insta" style="color:var(--g5);font-weight:700;text-decoration:underline">평창 인스타 핫플</a>에 따로 모아두었습니다.</p>
+    <p class="cafe-foot reveal">카페 사진을 누르면 2장씩 크게 보실 수 있습니다. 사진 찍기 좋은 <b>포토스팟</b>은 <a href="#insta" class="tlink">평창 인스타 핫플</a>에 따로 모아두었습니다.</p>
     <p class="insta-src reveal">영업시간·휴무는 방문 전 확인해 주세요. 카페 정보는 변동될 수 있습니다.</p>
   </div>
 </section>
@@ -1084,7 +1193,7 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
   <div class="wrap">
     <p class="eyebrow reveal">Rooms</p>
     <h2 class="sect-title reveal">넓고 쾌적한 객실</h2>
-    <p class="sect-lead reveal">스탠다드부터 복층 빌라까지, 인원과 목적에 맞춰. 온돌형 객실은 아이가 있는 가족에게 특히 사랑받습니다. <b style="color:var(--g9)">객실을 누르면 사진을 더 보실 수 있습니다.</b></p>
+    <p class="sect-lead reveal">스탠다드부터 복층 빌라까지, 인원과 목적에 맞춰. 온돌형 객실은 아이가 있는 가족에게 특히 사랑받습니다. <b class="hl">객실을 누르면 사진을 더 보실 수 있습니다.</b></p>
     <div class="rooms">
       <div class="room reveal" role="button" tabindex="0" data-dir="vzi-images/rooms/junior-suite" data-files="1.jpg,2.jpg,3.jpg,4.jpg,5.jpg" data-name="주니어 스위트">
         <div class="ph"><img src="vzi-images/rooms/junior-suite/1.jpg" alt="주니어 스위트" width="1280" height="800" loading="lazy" decoding="async"><span class="cnt">📷 5</span></div>
@@ -1132,7 +1241,7 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
         <div class="bd">
           <span class="lbl">🚌 SHUTTLE BUS</span>
           <h3>역에서 호텔까지, 무료 셔틀로</h3>
-          <p class="sub">KTX 평창역에 내리시면 택시를 잡지 않으셔도 됩니다. <b style="color:var(--g9)">요금도 예약도 없이</b> 시간에 맞춰 타시면 됩니다. 짐이 많은 가족 여행이나 겨울 스키 장비가 있을 때 특히 편합니다.</p>
+          <p class="sub">KTX 평창역에 내리시면 택시를 잡지 않으셔도 됩니다. <b class="hl">요금도 예약도 없이</b> 시간에 맞춰 타시면 됩니다. 짐이 많은 가족 여행이나 겨울 스키 장비가 있을 때 특히 편합니다.</p>
 
           <div class="shuttle-runs">
             <div class="run">
@@ -1163,7 +1272,7 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
 <section class="today">
   <div class="wrap today-grid">
     <div class="reveal">
-      <p class="eyebrow" style="color:var(--gold-sf)">Concierge</p>
+      <p class="eyebrow" class="hl-gold">Concierge</p>
       <h2 class="sect-title">‘오늘의 평창’을 보내드립니다</h2>
       <p class="sect-lead" style="color:var(--g3)">예약하신 분께는 체크인 하루 전, 그날의 평창을 카카오톡으로 안내합니다. 어디를 갈지 검색하지 않아도, 호텔이 하루를 설계해 드립니다.</p>
       <div class="chip-list">
@@ -1272,7 +1381,7 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
     <div class="pkg-cta reveal">
       <p>회차별 인원이 제한되어 있어 <b>사전 문의</b>로 접수받고 있습니다. 희망 날짜와 인원, 반려견·아이 동반 여부를 남겨주세요.</p>
       <a href="#reserve" class="btn btn-dark btn-lg">패키지 문의하기</a>
-      <a href="tel:0338328088" class="btn btn-ghost" style="color:var(--g9);border-color:var(--g9)">전화 033-832-8088</a>
+      <a href="tel:0338328088" class="btn btn-outline">전화 033-832-8088</a>
     </div>
   </div>
 </section>
@@ -1282,7 +1391,7 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
   <div class="wrap">
     <p class="eyebrow reveal">Golf</p>
     <h2 class="sect-title reveal">티오프까지, 차로 5분</h2>
-    <p class="sect-lead reveal">호텔과 같은 <b style="color:var(--g9)">태기로</b>에 <b style="color:var(--g9)">휘닉스 컨트리클럽</b>이 있습니다. 새벽에 서둘러 출발할 필요 없이, 조식을 들고 나가 라운딩하고 돌아와 쉬는 하루가 가능합니다.</p>
+    <p class="sect-lead reveal">호텔과 같은 <b class="hl">태기로</b>에 <b class="hl">휘닉스 컨트리클럽</b>이 있습니다. 새벽에 서둘러 출발할 필요 없이, 조식을 들고 나가 라운딩하고 돌아와 쉬는 하루가 가능합니다.</p>
 
     <div class="golf-hero reveal">
       <img src="vzi-images/golf/course-signature.jpg" alt="호수를 넘기는 티샷 — 휘닉스 컨트리클럽" width="792" height="446" loading="lazy" decoding="async">
@@ -1327,7 +1436,7 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
     <div class="golf-cta reveal">
       <p>골프 일정에 맞춰 묵으실 계획이라면, 라운딩 날짜와 인원을 남겨주세요.</p>
       <a href="#reserve" class="btn btn-dark">골프 일정 문의</a>
-      <a href="https://map.naver.com/p/search/휘닉스컨트리클럽" target="_blank" rel="noopener" class="btn btn-ghost" style="color:var(--g9);border-color:var(--g9)">지도에서 보기</a>
+      <a href="https://map.naver.com/p/search/휘닉스컨트리클럽" target="_blank" rel="noopener" class="btn btn-outline">지도에서 보기</a>
     </div>
 
     <p class="insta-src reveal" style="margin-top:18px">강원특별자치도 평창군 봉평면 태기로 174 · 코스 정보 참고: <a href="https://tour.pc.go.kr/" target="_blank" rel="noopener">평창군 공식 관광</a> — 요금·운영은 골프장 공지를 확인해 주세요.</p>
@@ -1337,7 +1446,7 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
 <!-- LOCATION -->
 <section class="loc-sec" id="location">
   <div class="wrap">
-    <p class="eyebrow reveal" style="color:var(--gold-sf)">Location</p>
+    <p class="eyebrow reveal" class="hl-gold">Location</p>
     <h2 class="sect-title reveal">오시는 길</h2>
     <p class="sect-lead reveal">서울에서 약 1시간 30분. 영동고속도로를 타고 오면 생각보다 가깝습니다. 강릉·정선·대관령·오대산이 모두 1시간 안쪽이라, 강원도 여행의 베이스캠프로 삼기 좋습니다.</p>
 
@@ -1512,7 +1621,7 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
       <details class="reveal">
         <summary>주변에 뭘 하면 좋을까요?</summary>
         <div class="ans">걸어서 갈 수 있는 스키장·워터파크부터, 차로 40분 안쪽의 대관령 양떼목장·월정사 전나무숲길까지 폭이 넓습니다.
-          <a href="#seasons">사계절 섹션</a>과 <a href="#insta">평창 인스타 핫플</a>, <a href="#eat">맛집</a>을 참고해 주세요.
+          <a href="#seasons">사계절 섹션</a>과 <a href="#insta" class="tlink">평창 인스타 핫플</a>, <a href="#eat">맛집</a>을 참고해 주세요.
           <span class="tip">※ 체크인 하루 전, 그날의 날씨와 열리는 축제에 맞춰 카카오톡으로 하루 코스를 안내해 드립니다.</span>
         </div>
       </details>
@@ -1531,7 +1640,7 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
   <div class="reserve-bg"></div>
   <div class="wrap" style="max-width:820px">
     <div style="text-align:center" class="reveal">
-      <p class="eyebrow" style="color:var(--gold-sf)">Reservation</p>
+      <p class="eyebrow" class="hl-gold">Reservation</p>
       <h2 class="sect-title">평창에서의 하루, 예약하기</h2>
       <p class="lead">희망 일정과 인원을 남겨주시면, 담당자가 빠르게 안내드립니다.</p>
     </div>
@@ -1578,7 +1687,7 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
       <div class="foot-info">
         <p>강원특별자치도 평창군 봉평면 태기로 228-95</p>
         <p>대표전화 033-832-8088</p>
-        <p>홈페이지 <a href="https://pch.hotelaround.kr/" target="_blank" rel="noopener" style="color:var(--gold-sf)">pch.hotelaround.kr</a></p>
+        <p>홈페이지 <a href="https://pch.hotelaround.kr/" target="_blank" rel="noopener" class="hl-gold">pch.hotelaround.kr</a></p>
       </div>
     </div>
     <div class="foot-bottom"><span>© 2026 HOTEL AROUND Pyeongchang. All rights reserved.</span><span>사계절 라이프스타일 리조트</span></div>
@@ -1607,11 +1716,20 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
 <div class="toast" id="toast"></div>
 
 <script>
-const hdr=document.getElementById('hdr'), fbar=document.getElementById('fbar');
-addEventListener('scroll',()=>{
+const hdr=document.getElementById('hdr'), fbar=document.getElementById('fbar'), prog=document.getElementById('prog');
+let ticking=false;
+function onScroll(){
   hdr.classList.toggle('solid',scrollY>40);
   fbar.classList.toggle('show',scrollY>window.innerHeight*0.9);
-});
+  if(prog){
+    const max=document.documentElement.scrollHeight-window.innerHeight;
+    prog.style.width=(max>0?Math.min(100,(scrollY/max)*100):0)+'%';
+  }
+  ticking=false;
+}
+// 스크롤마다 레이아웃을 읽으면 버벅인다 → 프레임당 한 번으로 묶는다
+addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(onScroll);}},{passive:true});
+onScroll();
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.14});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 // form (Netlify + local preview)
@@ -1663,6 +1781,32 @@ async function send(){
 }
 rf.addEventListener('submit',e=>{e.preventDefault();send();});
 document.getElementById('rretry').addEventListener('click',send);
+// ---- 모바일 메뉴 ----
+(function(){
+  const dr=document.getElementById('drawer'), btn=document.getElementById('menuBtn');
+  if(!dr||!btn)return;
+  let lastFocus=null;
+  function open(){
+    lastFocus=document.activeElement;
+    dr.classList.add('open');document.body.classList.add('lb-lock');
+    requestAnimationFrame(()=>dr.classList.add('in'));
+    btn.setAttribute('aria-expanded','true');
+    dr.querySelector('.drawer-x').focus();
+  }
+  function close(){
+    dr.classList.remove('in');
+    setTimeout(()=>dr.classList.remove('open'),340);
+    document.body.classList.remove('lb-lock');
+    btn.setAttribute('aria-expanded','false');
+    if(lastFocus)lastFocus.focus();
+  }
+  btn.addEventListener('click',open);
+  dr.querySelectorAll('[data-close]').forEach(el=>el.addEventListener('click',close));
+  // 메뉴 항목을 누르면 이동 후 닫는다
+  dr.querySelectorAll('nav a,.drawer-cta a').forEach(a=>a.addEventListener('click',close));
+  addEventListener('keydown',e=>{ if(e.key==='Escape'&&dr.classList.contains('open'))close(); });
+})();
+
 // ---- 객실 갤러리 라이트박스 ----
 (function(){
   const lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),
