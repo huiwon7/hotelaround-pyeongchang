@@ -545,6 +545,43 @@ body.lb-lock{overflow:hidden}
 .trail .lv.h{background:rgba(192,87,70,.24);color:#e8a99c}
 .forest .note{margin-top:15px;font-size:.79rem;color:var(--g3);line-height:1.7}
 
+/* ---- 메밀꽃 필 무렵 · 가족이 모이는 하루 ----
+   5060은 이효석을 교과서에서 배운 세대다. 봉평은 그분들에게 '그 봉평'이고,
+   이 이야기는 대관령·정선·강릉 어느 리조트도 쓸 수 없다. */
+.memil-sec{position:relative;color:#fff;overflow:hidden}
+.memil-sec>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.memil-sec::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(11,16,10,.88),rgba(11,16,10,.8) 45%,rgba(11,16,10,.93))}
+.memil-sec .eyebrow{color:var(--gold-sf)}
+.memil-quote{max-width:760px;margin-top:34px;padding-left:clamp(18px,3vw,28px);border-left:2px solid var(--gold)}
+.memil-quote p{font-family:var(--display);font-weight:700;letter-spacing:-.018em;
+  font-size:clamp(1.14rem,2.5vw,1.62rem);line-height:1.72;color:#f0ead8;word-break:keep-all}
+.memil-quote cite{display:block;margin-top:14px;font-style:normal;font-size:.84rem;color:var(--g3);letter-spacing:.04em}
+.memil-h{margin-top:clamp(38px,5vw,54px);font-family:var(--display);font-weight:800;letter-spacing:-.025em;
+  font-size:clamp(1.6rem,3.6vw,2.4rem);line-height:1.32;word-break:keep-all}
+.memil-h em{font-style:normal;color:var(--gold-sf)}
+.memil-lead{margin-top:16px;font-size:1rem;line-height:1.8;color:#d9d4c4;max-width:660px;word-break:keep-all}
+
+.memil-day{margin-top:34px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:900px){.memil-day{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.memil-day{grid-template-columns:1fr}}
+.memil-step{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
+  border-radius:var(--r-sm);padding:18px 18px 20px}
+.memil-step b{display:block;font-family:var(--serif);font-size:.72rem;letter-spacing:.2em;color:var(--gold-sf)}
+.memil-step h3{margin-top:9px;font-size:1.02rem;color:#fff}
+.memil-step p{margin-top:6px;font-size:.85rem;color:var(--g3);line-height:1.6}
+
+.memil-gather{margin-top:22px;background:rgba(255,255,255,.06);border:1px solid rgba(217,189,122,.3);
+  border-radius:var(--r-md);padding:clamp(22px,3vw,30px)}
+.memil-gather h3{font-size:1.16rem;color:var(--gold-sf)}
+.memil-gather>p{margin-top:10px;font-size:.93rem;color:#d9d4c4;line-height:1.75;max-width:640px;word-break:keep-all}
+.memil-caps{margin-top:18px;display:flex;flex-wrap:wrap;gap:9px}
+.memil-caps span{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.16);border-radius:var(--pill);
+  padding:8px 15px;font-size:.85rem;font-weight:600}
+.memil-caps span b{color:var(--gold-sf)}
+.memil-note{margin-top:15px;font-size:.81rem;color:var(--g3);line-height:1.7}
+.memil-cta{margin-top:28px;display:flex;flex-wrap:wrap;align-items:center;gap:13px}
+
 /* ---- 부모님과 함께 걷는 길 ----
    5060 동반 여행에서 실제로 가장 많이 하는 계산은 '거기 많이 걸어야 하니?'다.
    난이도·무장애로 골라 주는 곳이 없어 그 자체가 차별점이 된다. */
@@ -884,6 +921,7 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
       <a href="#rooms">객실<span>ROOMS</span></a>
       <a href="#facilities">시설 · 셔틀<span>FACILITIES</span></a>
       <a href="#package">별빛숲 패키지<span>PACKAGE</span></a>
+      <a href="#memil">메밀꽃 필 무렵<span>LITERARY</span></a>
       <a href="#golf">골프<span>GOLF</span></a>
       <a href="#location">오시는 길<span>LOCATION</span></a>
       <a href="#faq">자주 묻는 질문<span>FAQ</span></a>
@@ -1550,6 +1588,46 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
   </div>
 </section>
 
+<!-- 메밀꽃 필 무렵 · 가족이 모이는 하루 -->
+<section class="memil-sec" id="memil">
+  <img src="vzi-images/attractions/bongpyeong-buckwheat.jpg" alt="봉평 메밀꽃밭" width="800" height="600" loading="lazy" decoding="async">
+  <div class="wrap">
+    <p class="eyebrow reveal">Literary Stay</p>
+
+    <blockquote class="memil-quote reveal">
+      <p>“산허리는 온통 메밀밭이어서 피기 시작한 꽃이<br>소금을 뿌린 듯이 흐뭇한 달빛에 숨이 막힐 지경이다.”</p>
+      <cite>이효석, 「메밀꽃 필 무렵」(1936)</cite>
+    </blockquote>
+
+    <h2 class="memil-h reveal">교과서에서 읽던 그 봉평이,<br><em>호텔에서 차로 15분</em>입니다</h2>
+    <p class="memil-lead reveal">부모님 세대에게 봉평은 그냥 지명이 아닙니다. 소설 속 허 생원이 나귀를 끌고 걷던 그 밤길입니다. 여기는 그 이야기를 꺼낼 수 있는 유일한 자리입니다 — 대관령에서도, 강릉에서도 할 수 없는 이야기입니다.</p>
+
+    <div class="memil-day">
+      <div class="memil-step reveal"><b>MORNING</b><h3>숲에서 시작</h3><p>호텔에서 걸어 5분, 평탄한 흙길을 천천히 걷습니다.</p></div>
+      <div class="memil-step reveal"><b>NOON</b><h3>이효석문화마을</h3><p>생가와 문학관, 그리고 소설 속 메밀밭. 차로 15분.</p></div>
+      <div class="memil-step reveal"><b>LUNCH</b><h3>봉평 메밀 한 상</h3><p>미가연·메밀꽃향기·풀내음. 담백해서 어르신 입에 맞습니다.</p></div>
+      <div class="memil-step reveal"><b>EVENING</b><h3>다시 한자리에</h3><p>라포레의 저녁, 또는 루프탑에서 굽는 바비큐.</p></div>
+    </div>
+
+    <div class="memil-gather reveal">
+      <h3>🎂 생신·칠순, 식당에서 두 시간 말고</h3>
+      <p>모처럼 온 가족이 모이는 날인데 밥만 먹고 헤어지기엔 아깝습니다. 하룻밤 묵으면 낮에는 함께 걷고, 저녁에는 한자리에 앉고, 아침에 다시 얼굴을 봅니다. <b class="hl-gold">무엇보다 어머니가 상을 차리지 않으셔도 됩니다.</b></p>
+      <div class="memil-caps">
+        <span>연회장 최대 <b>180명</b></span>
+        <span>라포레 <b>150석</b></span>
+        <span>객실 <b>518실</b></span>
+        <span>평창역 <b>무료 셔틀</b></span>
+      </div>
+      <p class="memil-note">※ 가족 모임 상차림은 <b>사전 문의</b>로 준비해 드립니다. 인원과 날짜, 원하시는 형식(연회장·다이닝·바비큐)을 남겨주시면 담당자가 안내드립니다. 9월 <b>효석문화제</b> 기간에는 축제 일정과 묶어 잡으시면 좋습니다 — 공식 지정 숙박업소입니다.</p>
+    </div>
+
+    <div class="memil-cta reveal">
+      <a href="#reserve" class="btn btn-primary">가족 모임 문의하기</a>
+      <a href="#easy" class="btn btn-ghost">부모님과 걷는 길 보기</a>
+    </div>
+  </div>
+</section>
+
 <!-- GOLF -->
 <section class="golf-sec" id="golf">
   <div class="wrap">
@@ -1818,7 +1896,7 @@ footer{background:#1a2116;color:rgba(255,255,255,.75);padding:52px 0 40px;font-s
           <div class="f"><label for="rf-in">희망 체크인</label><input type="date" id="rf-in" name="체크인"></div>
           <div class="f"><label for="rf-out">희망 체크아웃</label><input type="date" id="rf-out" name="체크아웃"><span class="err" data-for="rf-out">체크아웃은 체크인 이후 날짜로 선택해 주세요.</span></div>
           <div class="f"><label for="rf-pax">인원</label><input id="rf-pax" name="인원" placeholder="예) 성인 2 · 아동 1"></div>
-          <div class="f"><label for="rf-type">여행 유형</label><select id="rf-type" name="유형"><option value="">선택</option><option>별빛숲 패키지(1박2일)</option><option>가족여행</option><option>3대 가족여행(부모님 동반)</option><option>커플·웰니스</option><option>반려견 동반</option><option>기업·단체·워크숍</option><option>기타</option></select></div>
+          <div class="f"><label for="rf-type">여행 유형</label><select id="rf-type" name="유형"><option value="">선택</option><option>별빛숲 패키지(1박2일)</option><option>가족여행</option><option>3대 가족여행(부모님 동반)</option><option>가족 모임(생신·칠순)</option><option>커플·웰니스</option><option>반려견 동반</option><option>기업·단체·워크숍</option><option>기타</option></select></div>
           <div class="f full"><label for="rf-msg">문의 내용</label><textarea id="rf-msg" name="문의내용" placeholder="희망 객실, 바비큐/웰니스 이용 여부, 요청사항 등을 자유롭게 적어주세요."></textarea></div>
         </div>
         <div class="form-foot">
